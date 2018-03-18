@@ -11,7 +11,7 @@ using VS = vector<string>;
 
 
 // Using latex.
-void convert_to_pdf(VVI horario, VS asigs) {
+void convert_to_pdf(VVI horario, VS asigs, VI finde) {
   int n = horario.size();
   
   ofstream fileOut;
@@ -21,17 +21,27 @@ void convert_to_pdf(VVI horario, VS asigs) {
   for (int i = 0; i < n; ++i) {
     fileOut << "\t\t\t" << "\\hline" << endl;
     for (int j = 0; j < 5; ++j) {
-      fileOut << "\t\t\t" << (j ? "& \t" : "");
+      fileOut << "\t\t\t" << (j ? "&\t" : "");
       if (horario[i][j] >= 0) fileOut << asigs[horario[i][j]];
       if (horario[i][j] == -1) fileOut << -1;
       fileOut << '\t';
-      if (j == 4) fileOut << "\\\\" << endl;
+      if (j == 4) fileOut << "\\\\" << endl; 
     }
   }
   fileOut << "\t\t\t" << "\\hline" << endl;
-  
-  fileOut << "\t\t\\end{tabular}\n\t\\end{center}\n\n\\end{document}" << endl;
+  fileOut << "\t\t\\end{tabular}\n\t\\end{center}\n\n" << endl;
 
+  fileOut << "\t\\vspace{2cm}\n\t\\textbf{Fin de semana:}\n\n\t\\begin{center}\n\t\t\\begin{tabular}{|c|c|}\n";
+  fileOut << "\t\t\t\\hline\n\t\t\t\\textbf{ASIGNATURA}\t&\t\\textbf{HORAS}\\\\\n";
+  int m = asigs.size();
+  for (int i = 0; i < m; ++i)
+    if (finde[i] != 0) {
+      fileOut << "\t\t\t" << "\\hline" << endl;      
+      fileOut << "\t\t\t" << asigs[i] << "\t&\t" << finde[i] << "\\\\" << endl; 
+    }
+  fileOut << "\t\t\t" << "\\hline" << endl;
+  fileOut << "\t\t\\end{tabular}\n\t\\end{center}\n\n\\end{document}";
+  
   system("pdflatex horario.tex && okular horario.pdf &");
 }
 
@@ -94,6 +104,7 @@ void sort(VI& v, VS& w) {
 }
 
 
+// Primera asignación de horas al fin de semana.
 VI update_finde(VI& horas) {
   int n = horas.size();
   VI finde(n, 0);
@@ -102,11 +113,8 @@ VI update_finde(VI& horas) {
   for (int i = 0; i < n; ++i) ht += horas[i];
   int hf = (ht*2)/7;
 
-  if (hf%2 == 1) {
-    --hf;
-    --horas[n - 1];
-    ++finde[n - 1];
-  }
+  if (hf%2 != 0) --hf;
+    
   int i = n - 1;
   while (hf > 0) {
     hf -= 2;
@@ -119,7 +127,19 @@ VI update_finde(VI& horas) {
 }
 
 
-bool put(int asig, int day, VVI& horario) {
+// Añadir 1 horas de estudio de asig en day.
+bool put1(int asig, int day, VVI& horario) {
+  for (int i = 0; i < int(horario.size()); ++i)
+    if (horario[i][day] == -2) {
+      horario[i][day] = asig;
+      return true;
+    }
+  return false;
+}
+
+
+// Añadir 2 horas de estudio de asig en day.
+bool put2(int asig, int day, VVI& horario) {
   for (int i = 0; i < int(horario.size()) - 1; ++i)
     if (horario[i][day] == -2 and horario[i + 1][day] == -2) {
       horario[i][day] = horario[i + 1][day] = asig;
@@ -129,21 +149,86 @@ bool put(int asig, int day, VVI& horario) {
 }
 
 
-void distribute(VI& horas, VVI& horario) {
+// Retorna verdadero si un día está completo.
+int complete(VVI horario, int day) {
+  int n = horario.size();
+  for (int i = 0; i < n; ++i)
+    if (horario[i][day] == -2) return false;
+  return true;
+}
+
+
+// Devuelve el día con menos horas de estudio no completo.
+int next_minimum_uncomplete(VVI horario, VI hras_est_dia) {
+  int minDay = -1;
+  for (int day = 0; day < 5; ++day)
+    if (not complete(horario, day) and (minDay == -1 or hras_est_dia[day] < hras_est_dia[minDay]))
+      minDay = day;
+
+  return minDay;
+}
+
+
+void distribute(VI& horas, VVI& horario, VI& finde) {
+  VI hras_est_dia(5, 0);
+  int n = horas.size(); // Número de asignaturas.
+  
+  // En grupos de 2 horas.
   // Secuencia: Lunes, Miércoles, Viernes, Martes, Jueves.
   VI sec = {0, 2, 4, 1, 3};
-  
-  int n = horas.size();
-  int j = 0;  
+  int j = 0;  // Iterador para la secuencia de días.  
   for (int asig = 0; asig < n; ++asig) {
     int exit = 0;
     while (horas[asig] > 1 and exit < 5) {
       if (j > 4) j = 0;
-      if (put(asig, sec[j], horario)) horas[asig] -= 2;
+      if (put2(asig, sec[j], horario)) {
+	horas[asig] -= 2;
+	hras_est_dia[sec[j]] += 2;
+      }
       else ++exit;
       ++j;
     }
   }
+
+  // Para que no se quede una asignatura con más de 4 horas para el fin de semana.
+  for (int asig = 0; asig < n; ++asig) {
+    while (horas[asig] + finde[asig] > 4) {
+      int day = next_minimum_uncomplete(horario, hras_est_dia);
+      if (put1(asig, day, horario)) {
+	--horas[asig];
+	++hras_est_dia[day];
+      }
+    }
+  }
+  
+  // De 1 hora en 1 hora. Comenzando por los días con menos horas de estudio y sin importar orden de asignaturas.
+  for (int asig = 0; asig < n; ++asig) {
+    bool finished = false;
+    while (horas[asig] > 0 and not finished) {
+      int day = next_minimum_uncomplete(horario, hras_est_dia);
+      if (day == -1) finished = true;
+      else if (put1(asig, day, horario)) {
+	--horas[asig];
+	++hras_est_dia[day];
+      }
+    }
+  }
+
+  // Guardando las horas no asignadas en vector fin de semana.
+  for (int i = 0; i < n; ++i) {
+    finde[i] += horas[i];
+    horas[i] = 0;
+  }
+}
+
+
+VI distribute_main(VI& horas, VS& asigs, VVI& horario) {
+  sort(horas, asigs);
+  VI finde = update_finde(horas);
+  sort(horas, asigs);
+  distribute(horas, horario, finde);
+  
+  return finde;
 }
 
 
@@ -154,39 +239,15 @@ int main() {
   VVI horario = {
     {-1, -2, -2, -2, -2},
     {-2, -2, -1, -2, -2},
-    {-2, -2, -1, -2, -2},
-    {-2, -2, -2, -2, -2},
-    {-2, -1, -2, -2, -1},
-    {-2, -2, -2, -1, -1}
+    {-2, -1, -1, -2, -2},
+    {-1, -1, -2, -2, -2},
+    {-1, -1, -2, -2, -1},
+    {-1, -2, -2, -1, -1}
   };
-  
-  // cout << endl << "INPUT INICIAL" << endl;
-  // cout << "horas: ";
-  // print(horas);
-  // cout << "asigs: ";
-  // print(asigs);
-  
-  sort(horas, asigs);
-  VI finde = update_finde(horas);
-  
-  // cout << endl << "ESTADO INTERMEDIO" << endl;
-  // cout << "horas: ";
-  // print(horas);
-  // cout << "finde: ";
-  // print(finde);
-  // cout << "asigs: ";
-  // print(asigs);
 
-  // sort(horas, asigs);
-  distribute(horas, horario);
-  
-  // cout << endl << "ESTADO FINAL" << endl;
-  // cout << "horas: ";
-  // print(horas);
-  // cout << "finde: ";
-  // print(finde);
-  // cout << "asigs: ";
-  // print(asigs);
-  
-  // convert_to_pdf(horario, asigs);
+  // Programa
+  VI finde = distribute_main(horas, asigs, horario);
+
+  // Output en pdf
+  convert_to_pdf(horario, asigs, finde);
 }
