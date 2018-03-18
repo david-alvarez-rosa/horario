@@ -34,6 +34,8 @@ merge dels 3 fitxers:
     >>> di = pd.read_csv('ini.csv')
     >>> dn = pd.read_csv('noini.csv')
     >>> ds = pd.read_csv('sele.csv')
-    >>> d1 = pd.merge(di,dn, on=['CODEX','CODASS','NF'])
+    >>> d1 = pd.merge(di,ds, on='CODEX')
     >>> d2 = pd.merge(d1,dn,how = "outer")
+    >>> d2.to_csv('merged_files.csv',encoding='UTF-8',index=False)
+    
 '''
