@@ -1,4 +1,4 @@
-# Compare function for selection sort.
+# Función de comparación para el ordenamiento por selección.
 def comp(a, b):
     if a%2 == 0:
         if b%2 == 0:
@@ -9,8 +9,8 @@ def comp(a, b):
         if b%2 == 0: return False
         if a <= b: return True
 
-
-# Selection sort.
+        
+# Ordenamiento por selección.
 def sort(v, w):
     n = len(v)
     for i in range(0, n):
@@ -107,11 +107,11 @@ def distribute(horas, horario, finde):
         while horas[asig] + finde[asig] > 4 and bug < 3:
             bug += 1
             day = next_minimum_uncomplete(horario, hras_est_dia)
-            if put1(asig, day, horario):
+            if day != -1 and put1(asig, day, horario):
                 horas[asig] -= 1
                 hras_est_dia[day] += 1
 
-    # De 1 hora en 1 hora. Comenzando por los días con menos horas de estudio y sin importar orden de asignaturas.
+    # De 1 hora en 1 hora. Comenzando por los días con menos horas de estudio.
     for asig in range (0, n):
         finished = False
         while horas[asig] > 0 and not finished:
@@ -141,18 +141,32 @@ horas = [3, 5, 4, 5, 4, 4, 2]
 asigs = ["DINAMICA", "ANALISIS REAL", "MECANICA", "TOPOLOGIA", "ECONOMIA", "ELECTROMAGNETISMO", "PROYECTO"]
 horario = [
     [-1, -2, -1, -2, -1],
-    [-2, -1, -1, -2, -2],
+    [-2, -1, -2, -2, -2],
+    [-1, -1, -2, -2, -1],
     [-1, -1, -1, -2, -1],
-    [-1, -1, -1, -2, -1],
-    [-1, -1, -1, -2, -2],
+    [-1, -1, -1, -1, -2],
     [-2, -2, -2, -2, -2]
 ]
 
 # Programa.
 finde = distribute_main(horas, asigs, horario)
 
-# Output.
+# Output codificado.
 print("asigs: ", asigs)
-print("horas: ", horas)
 print("finde: ", finde)
 print("horario: ", horario)
+
+# Output en tabla con nombre asignaturas.
+matrix = horario
+for i in range (0, len(horario)):
+    for j in range(0, 5):
+        k = horario[i][j]
+        if k >= 0: matrix[i][j] = asigs[k]
+        else: matrix[i][j] = k
+
+print()
+s = [[str(e) for e in row] for row in matrix]
+lens = [max(map(len, col)) for col in zip(*s)]
+fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+table = [fmt.format(*row) for row in s]
+print ('\n'.join(table))
