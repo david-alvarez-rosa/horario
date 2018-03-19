@@ -60,6 +60,16 @@ void print(VS v) {
 }
 
 
+void print(VVI M) {
+  int m = M.size();
+  int n = M[0].size();
+  for (int i = 0; i < m; ++i) {
+    for (int j = 0; j < n; ++j) cout << M[i][j] << '\t';
+    cout << endl;
+  }
+}
+
+
 void swap(int& a, int& b) {
   int c = a;
   a = b;
@@ -74,15 +84,15 @@ void swap(string& a, string& b) {
 }
 
 
-// Comparison function for selection sort.
+// Compare function for selection sort.
 bool comp(int a, int b) {
   if (a%2 == 0) {
     if (b%2 == 0) return a <= b;
-    else return true;
+    return true;
   }
   else {
     if (b%2 == 0) return false;
-    return a < b;
+    return a <= b;
   }
 }
 
@@ -192,9 +202,11 @@ void distribute(VI& horas, VVI& horario, VI& finde) {
 
   // Para que no se quede una asignatura con más de 4 horas para el fin de semana.
   for (int asig = 0; asig < n; ++asig) {
-    while (horas[asig] + finde[asig] > 4) {
+    int bug = 0; // Para evitar bucle infinito.
+    while (horas[asig] + finde[asig] > 4 and bug < 3) {
+      ++bug;
       int day = next_minimum_uncomplete(horario, hras_est_dia);
-      if (put1(asig, day, horario)) {
+      if (day != -1 and put1(asig, day, horario)) {
 	--horas[asig];
 	++hras_est_dia[day];
       }
@@ -233,21 +245,21 @@ VI distribute_main(VI& horas, VS& asigs, VVI& horario) {
 
 
 int main() {
-  // Input
+  // Input.
   VI horas = {3, 5, 4, 5, 4, 4, 2};
   VS asigs = {"DINAMICA", "ANALISIS REAL", "MECANICA", "TOPOLOGIA", "ECONOMIA", "ELECTROMAGNETISMO", "PROYECTO"};
   VVI horario = {
-    {-1, -2, -2, -2, -2},
-    {-2, -2, -1, -2, -2},
+    {-1, -2, -1, -2, -1},
     {-2, -1, -1, -2, -2},
-    {-1, -1, -2, -2, -2},
-    {-1, -1, -2, -2, -1},
-    {-1, -2, -2, -1, -1}
+    {-1, -1, -1, -2, -1},
+    {-1, -1, -1, -2, -1},
+    {-1, -1, -1, -2, -2},
+    {-2, -2, -2, -2, -2}
   };
 
-  // Programa
+  // Programa.
   VI finde = distribute_main(horas, asigs, horario);
 
-  // Output en pdf
+  // Output en pdf.
   convert_to_pdf(horario, asigs, finde);
 }
