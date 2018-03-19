@@ -32,17 +32,17 @@ void convert_to_pdf(VVI horario, VS asigs, VI finde) {
   fileOut << "\t\t\\end{tabular}\n\t\\end{center}\n\n" << endl;
 
   fileOut << "\t\\vspace{2cm}\n\t\\textbf{Fin de semana:}\n\n\t\\begin{center}\n\t\t\\begin{tabular}{|c|c|}\n";
-  fileOut << "\t\t\t\\hline\n\t\t\t\\textbf{ASIGNATURA}\t&\t\\textbf{HORAS}\\\\\n";
+  fileOut << "\t\t\t\\hline\n\t\t\t\\textbf{ASIGNATURA}\t&\t\\textbf{HORAS}\t\\\\\n";
   int m = asigs.size();
   for (int i = 0; i < m; ++i)
     if (finde[i] != 0) {
       fileOut << "\t\t\t" << "\\hline" << endl;      
-      fileOut << "\t\t\t" << asigs[i] << "\t&\t" << finde[i] << "\\\\" << endl; 
+      fileOut << "\t\t\t" << asigs[i] << "\t&\t" << finde[i] << "\t\\\\" << endl; 
     }
   fileOut << "\t\t\t" << "\\hline" << endl;
   fileOut << "\t\t\\end{tabular}\n\t\\end{center}\n\n\\end{document}";
   
-  system("pdflatex horario.tex && okular horario.pdf &");
+  system("pdflatex horario.tex && rm horario.log horario.aux && okular horario.pdf &");
 }
 
 
@@ -70,21 +70,7 @@ void print(VVI M) {
 }
 
 
-void swap(int& a, int& b) {
-  int c = a;
-  a = b;
-  b = c;
-}
-
-
-void swap(string& a, string& b) {
-  string c = a;
-  a = b;
-  b = c;
-}
-
-
-// Compare function for selection sort.
+// Función de comparación para el ordenamiento por selección.
 bool comp(int a, int b) {
   if (a%2 == 0) {
     if (b%2 == 0) return a <= b;
@@ -97,7 +83,7 @@ bool comp(int a, int b) {
 }
 
 
-// Selection sort.
+// Ordenamiento por selección.
 void sort(VI& v, VS& w) {
   int n = v.size();
   for (int i = 0; i < n; ++i) {
@@ -213,7 +199,7 @@ void distribute(VI& horas, VVI& horario, VI& finde) {
     }
   }
   
-  // De 1 hora en 1 hora. Comenzando por los días con menos horas de estudio y sin importar orden de asignaturas.
+  // De 1 hora en 1 hora. Comenzando por los días con menos horas de estudio.
   for (int asig = 0; asig < n; ++asig) {
     bool finished = false;
     while (horas[asig] > 0 and not finished) {
@@ -250,15 +236,23 @@ int main() {
   VS asigs = {"DINAMICA", "ANALISIS REAL", "MECANICA", "TOPOLOGIA", "ECONOMIA", "ELECTROMAGNETISMO", "PROYECTO"};
   VVI horario = {
     {-1, -2, -1, -2, -1},
-    {-2, -1, -1, -2, -2},
+    {-2, -1, -2, -2, -2},
+    {-1, -1, -2, -2, -1},
     {-1, -1, -1, -2, -1},
-    {-1, -1, -1, -2, -1},
-    {-1, -1, -1, -2, -2},
+    {-1, -1, -1, -1, -2},
     {-2, -2, -2, -2, -2}
   };
 
   // Programa.
   VI finde = distribute_main(horas, asigs, horario);
+
+  // Output.
+  cout << "asigs: ";
+  print(asigs);
+  cout << "finde: ";
+  print(finde);
+  cout << "horario: " << endl;
+  print(horario);
 
   // Output en pdf.
   convert_to_pdf(horario, asigs, finde);
