@@ -15,8 +15,8 @@ Ass={'Algebra':240011,'Calcul1':240012,'MecFon':240013,'Quim1':240014,'Info1':24
 def KMeans(k, n_alg, n_calc1, n_mecfon, n_quim1, n_info1, n_geo, n_calc2, n_termo, n_quim2, n_expre, a1=0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0, a7 = 0, a8 = 0):
     #a1,a2,a3.. son codis de assignatures matriculades
     dic = genera_dic(a1, a2, a3, a4, a5, a6, a7, a8)
-    dic[0] = {'240011':n_alg, '240012':n_calc1, '240013':n_mecfon, '240014':n_quim1, '240015':n_info1, '240021':n_geo, '240022':n_calc2, '240023':n_termo, '240024':n_quim2, '240025':n_expre}
-    scores=[(sim_distance(dic,0,other),other) for other in dic if other !=0]
+    dic['client'] = {'240011':n_alg, '240012':n_calc1, '240013':n_mecfon, '240014':n_quim1, '240015':n_info1, '240021':n_geo, '240022':n_calc2, '240023':n_termo, '240024':n_quim2, '240025':n_expre}
+    scores=[(sim_distance(dic,'client',other),other) for other in dic if other !='client']
     scores.sort()
     return scores[0:k]
 
