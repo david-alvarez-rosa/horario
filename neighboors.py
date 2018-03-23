@@ -43,46 +43,28 @@ def distance(row, notas, matrix):
     return distance
 
 
+# Va actualizando el vector nearest para solo quedarse con los k primeros.
+# Es una modificación del ordenamiento por selección.
+def update(nearest, k):
+    if len(nearest) <= k:
+        nearest.sort()
+        return
+    it = k
+    while k > 0:
+        k -= 1
+        if nearest[k][0] > nearest[k + 1][0]:
+            nearest[k], nearest[k + 1] = nearest[k + 1], nearest[k] # Swap.
+        else:
+            nearest.pop()
+            return
+
+        
 # Retorna vector con las filas (en la matriz) de los k vecinos más cercanos.
-# Ahora retorna todas las distancias, falta implementar la k.
+# Precondición: todas las asignaturas del input son de la fase inicial.
 # Funciona bien porque los CODASS de fase inicial son los más pequeños.
-# Si en el input hubiera una asignatura de la fase no inicial, no funcionará bien.
 def k_nearest_neighboors(k, matrix, notas):
     nearest = []
     for i in range(1, len(matrix)):
         nearest.append([distance(i, notas, matrix), i])
-    nearest.sort()
+        update(nearest, k)
     return nearest
-
-
-# # Asignaturas con la notas que el usuario introduce como input.
-# asigs1 = [240011, 240012, 240013, 240014, 240015, 240021, 240022, 240023, 240024, 240025]
-# notas = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
-
-# # Asignaturas que el usuario se va a matricular (de las que quiere el horario).
-# asigs2 = [240033, 240041, 240042, 240053]
-
-# # Abrir fichero con todos los datos (está ordenado).
-# df = pd.read_csv('Ficheros/data.csv')
-
-# # Crear la matriz.
-# matrix = create_matrix(df, asigs1, asigs2)
-
-# # Vector con todas las distancias.
-# nearest = k_nearest_neighboors(15, matrix, notas)
-
-
-# # Imprimir por pantalla resultados.
-# print(nearest[0:15])
-
-
-# print()
-# s = [[str(e) for e in row] for row in matrix]
-# lens = [max(map(len, col)) for col in zip(*s)]
-# fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-# table = [fmt.format(*row) for row in s]
-# print ('\n'.join(table))
-
-
-
-
