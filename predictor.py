@@ -14,7 +14,7 @@ def predict_grades(nearest, asigs2, matrix, k, n):
     return grades
 
 
-def predict_main(asigs1, notas, asigs2):
+def predict_main(asigs1, notas, asigs2, k):
     # Abrir fichero con todos los datos (está ordenado).
     df = pd.read_csv('Ficheros/data.csv')
     
@@ -23,7 +23,7 @@ def predict_main(asigs1, notas, asigs2):
     matrix = neighboors.create_matrix(df, asigs1, asigs2)
 
     # Vector con todas las distancias.
-    nearest = neighboors.k_nearest_neighboors(15, matrix, notas)
+    nearest = neighboors.k_nearest_neighboors(k, matrix, notas)
 
     # Predecir notas.
     grades = predict_grades(nearest, asigs2, matrix, 15, len(asigs1))
