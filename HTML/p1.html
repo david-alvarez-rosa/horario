@@ -1,49 +1,95 @@
 <html>
-<head><title>Proyecto I - Horario</title></head>
-	<body bgcolor = "lightblue">
+<head>
+<title>Proyecto I - Horario</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<body bgcolor = #ffffff>
 	<frameset
-	<h1><font color = "white" face="impact"><u> GENERADOR DE HORARIO</u></font></h1>
+	<h1><font color = #000000 face="impact"><u> GENERADOR DE HORARIO:</u></font></h1>
 	<em>Web inteligente dedicada a la organización semanal del estudio con objetivos adaptados al estudiante.</em>
 	<!-- em == italics -->
-	<h4><u>Rendimiento deseado:</u></h3>
-	<form>
-  	<input type="radio" name="tipo1" value="R1"> Mínimo (Aprobado de todas las asignaturas)
-  	<input type="radio" name="tipo2" value="R2"> Medio (Aprobado de las asignaturas con peligro a suspenso + mantenimiento otras asignaturas)
-  	<input type="radio" name="tipo3" value="R3"> Alto (Incremento 10% notas asignaturas)
-	</form>
+
 	
 	<style>
+			* {
+		box-sizing: border-box;
+		}
+		/* Clear floats after the columns */
+		.row {
+			display: flex;
+		}
+		
+		/* Create two equal columns that floats next to each other */
+		.column {
+			flex: 40%;
+			padding: 20px;
+			height: 500px; /* Should be removed. Only for demonstration */
+		}
 		table {
 			font-family: arial, sans-serif;
 			border-collapse: collapse;
-			width: 100%;
+			width: 90%;
 		}
-
 		td, th {
-			border: 1px solid #dddddd;
+			border: 1px solid #000000;
 			text-align: left;
 			padding: 8px;
 		}
 
-		tr:nth-child(even) {
-			background-color: #dddddd;
+		tr:nth-child(odd) {
+			background-color: #00aaff;
 		}
 	</style>
-	<table>
-		<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Álgebra Lineal:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Cálculo I:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Fundamentos de Informática:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Química I:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Mecánica Fundamental:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Química II:</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Cálculo II</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Expresión Gráfica</td><td> <input id="number" type="number"></td></tr>
-		<tr><td>Geometría</td><td> <input id="number" type="number"></td></tr>
-	<table>
+	</head>
+	<body>
 	
-	<img src = "Fotos/etseib.jpg" title ="ETSEIB"> <br />
-	<a href = "https://etseib.upc.edu/ca" target = "_blank">
-	Página Web ETSEIB </a>
+	<div class="row">
+  		<div class="column" style="background-color:#99ccff;">
+  			<div class="w3-dropdown-hover">
+			<button class="w3-button w3-beige">Escoge tu rendimiento</button>
+				<div class="w3-dropdown-content w3-bar-block w3-border">
+					<a href="#" class="w3-bar-item w3-button">Mínimo</a>
+					<a href="#" class="w3-bar-item w3-button">Medio</a>
+					<a href="#" class="w3-bar-item w3-button">Alto</a>
+				</div>
+			</div>
+			
+			<table>
+				<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Álgebra Lineal:</td><td> <input id="number" type="number"></td></tr>
+				<table>
+		</div>
+  		
+  		<div class="column" style="background-color:#99ccff;">
+				<table>
+				<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Álgebra Lineal:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Cálculo I:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Fundamentos de Informática:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Química I:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Mecánica Fundamental:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Química II:</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Cálculo II</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Expresión Gráfica</td><td> <input id="number" type="number"></td></tr>
+				<tr><td>Geometría</td><td> <input id="number" type="number"></td></tr>
+				<table>
+  		</div>
+			
+  		
+
+
+	</div>
+	
+	
+	
+	
+	
+	
+
+
 	</body> 
+	<a href = "https://etseib.upc.edu/ca" target = "_blank">
+  		<img src="Fotos_HTML/etseib.jpg">
+	</a>
+	
 </html>

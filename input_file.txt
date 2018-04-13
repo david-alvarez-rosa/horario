@@ -18,25 +18,25 @@ Selectividad
 No implementado.
 
 Álgebra Lineal
--1
+-0
 Cálculo I
--1
+-0
 Mecánica Fundamental
--1
+-0
 Química I
--1
+-0
 Fundamentos de Informática
--1
+-0
 Geometría
--1
+-0
 Cálculo II
--1
+-0
 Termodinámica Fundamental
--1
+-0
 Química II
--1
+-0
 Expresión Gráfica
--1
+-0
 
 
 6

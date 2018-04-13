@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Proyecto I - Horario</title>
+<p class = title1>Smart_hours.</p>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- AUX -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+#tags{
+  width: auto;
+}
+input[type=submit] {
+  width: 15em;
+  height: 3em;
+}
+p.title1 {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 80px; 
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1; 
+    text-align: center
+}
+p.title2 { 
+	color: #111; 
+	font-family: 'Open Sans', sans-serif; 
+	font-size: 30px; 
+	font-weight: 300; 
+	line-height: 30px; 
+	margin: 0 0 30px; 
+	text-align: center; 
+}
+p.observations { 
+	color: #111; 
+	font-family: 'Open Sans', sans-serif; 
+	font-size: 15px; 
+	font-weight: 300; 
+	line-height: 30px; 
+	margin: 0 0 5px; 
+	text-align: left; 
+}
+p { 
+	color: #000000; 
+	font-family: 'Helvetica Neue', sans-serif; 
+	font-size: 14px; 
+	line-height: 24px; 
+	margin: 0 0 24px; 
+	text-align: justify; 
+	text-justify: inter-word; 
+}
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 450px; /* Should be removed. Only for demonstration */
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+* {
+  box-sizing: border-box;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+ul li:hover {
+  background: #ddd;
+}
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+.header {
+  background-color: #F3CA24;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+input {
+  border: none;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.addBtn:hover {
+  background-color: #bbb;
+}
+</style>
+
+
+</head>
+<!-- HEADER -->
+<body bgcolor = #F3CA24>
+<!-- APARTADO HORARIO -->
+<link rel="stylesheet" type="text/css" href="DPS.css">
+<p class = observations> Marca las horas que no puedas estudiar para que podamos generarte el mejor horario posible. </p>
+<table id="timeTable">
+            <th></th>
+            <th class="titelCell" align="center">09:00</th>
+            <th class="titelCell" align="center">10:00</th>
+            <th class="titelCell" align="center">11:00</th>
+            <th class="titelCell" align="center">12:00</th>
+            <th class="titelCell" align="center">13:00</th>
+            <th class="titelCell" align="center">14:00</th>
+            <th class="titelCell" align="center">15:00</th>
+            <th class="titelCell" align="center">16:00</th>
+            <th class="titelCell" align="center">17:00</th>
+            <th class="titelCell" align="center">18:00</th>
+            <th class="titelCell" align="center">19:00</th>
+            <th class="titelCell" align="center">20:00</th>
+            <th class="titelCell" align="center">21:00</th>
+            <th class="titelCell" align="center">22:00</th>
+            <th class="titelCell" align="center">23:00</th>
+
+            <tr>
+                <th class="dayCell"> Mon</th>
+                <td class="ticCell" id="19" ></td>
+                <td class="ticCell" id="110" ></td>
+                <td class="ticCell" id="111" ></td>
+                <td class="ticCell" id="112" ></td>
+                <td class="ticCell" id="113" ></td>
+                <td class="ticCell" id="114" ></td>
+                <td class="ticCell" id="115" ></td>
+                <td class="ticCell" id="116" ></td>
+                <td class="ticCell" id="117" ></td>
+                <td class="ticCell" id="118" ></td>
+                <td class="ticCell" id="119" ></td>
+                <td class="ticCell" id="120" ></td>
+                <td class="ticCell" id="121" ></td>
+                <td class="ticCell" id="122" ></td>
+                <td class="ticCell" id="123" ></td>
+
+            </tr>
+            <tr>
+                <th class="dayCell"> Tue</th>
+                <td class="ticCell" id="29" ></td>
+                <td class="ticCell" id="210" ></td>
+                <td class="ticCell" id="211" ></td>
+                <td class="ticCell" id="212" ></td>
+                <td class="ticCell" id="213" ></td>
+                <td class="ticCell" id="214" ></td>
+                <td class="ticCell" id="215" ></td>
+                <td class="ticCell" id="216" ></td>
+                <td class="ticCell" id="217" ></td>
+                <td class="ticCell" id="218" ></td>
+                <td class="ticCell" id="219" ></td>
+                <td class="ticCell" id="220" ></td>
+                <td class="ticCell" id="221" ></td>
+                <td class="ticCell" id="222" ></td>
+                <td class="ticCell" id="223" ></td>
+            </tr>
+            <tr>
+                <th class="dayCell"> Wed</th>
+                <td class="ticCell" id="39" ></td>
+                <td class="ticCell" id="310" ></td>
+                <td class="ticCell" id="311" ></td>
+                <td class="ticCell" id="312" ></td>
+                <td class="ticCell" id="313" ></td>
+                <td class="ticCell" id="314" ></td>
+                <td class="ticCell" id="315" ></td>
+                <td class="ticCell" id="316" ></td>
+                <td class="ticCell" id="317" ></td>
+                <td class="ticCell" id="318" ></td>
+                <td class="ticCell" id="319" ></td>
+                <td class="ticCell" id="320" ></td>
+                <td class="ticCell" id="321" ></td>
+                <td class="ticCell" id="322" ></td>
+                <td class="ticCell" id="323" ></td>
+            </tr>
+            <tr>
+                <th class="dayCell"> Thu</th>
+                <td class="ticCell" id="49" ></td>
+                <td class="ticCell" id="410" ></td>
+                <td class="ticCell" id="411" ></td>
+                <td class="ticCell" id="412" ></td>
+                <td class="ticCell" id="413" ></td>
+                <td class="ticCell" id="414" ></td>
+                <td class="ticCell" id="415" ></td>
+                <td class="ticCell" id="416" ></td>
+                <td class="ticCell" id="417" ></td>
+                <td class="ticCell" id="418" ></td>
+                <td class="ticCell" id="419" ></td>
+                <td class="ticCell" id="420" ></td>
+                <td class="ticCell" id="421" ></td>
+                <td class="ticCell" id="422" ></td>
+                <td class="ticCell" id="423" ></td>
+            </tr>
+            <tr>
+                <th class="dayCell"> Fri</th>
+                <td class="ticCell" id="59" ></td>
+                <td class="ticCell" id="510" ></td>
+                <td class="ticCell" id="511" ></td>
+                <td class="ticCell" id="512" ></td>
+                <td class="ticCell" id="513" ></td>
+                <td class="ticCell" id="514" ></td>
+                <td class="ticCell" id="515" ></td>
+                <td class="ticCell" id="516" ></td>
+                <td class="ticCell" id="517" ></td>
+                <td class="ticCell" id="518" ></td>
+                <td class="ticCell" id="519" ></td>
+                <td class="ticCell" id="520" ></td>
+                <td class="ticCell" id="521" ></td>
+                <td class="ticCell" id="522" ></td>
+                <td class="ticCell" id="523" ></td>
+            </tr>
+</table>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="DPS.js"></script>
+
+<div class="row">
+  <!-- PRIMERA COLUMNA -->
+  <div class="column" style="background-color:#F3CA24;">
+	<div id="myDIV" class="header">
+  		<p class="title2" style="margin:5px">Asignaturas matriculadas</p>
+  		<form action="/action_page.php" method="get">
+  		<input list="abc" type="text" id="myInput" placeholder="Añade asignaturas...">
+  		<datalist id="abc">
+    		<option value="Mecànica">
+			<option value="Estadística">
+			<option value="Economia i Empresa">
+			<option value="Dinàmica de Sistemes">
+			<option value="Teoria de Màquines i Mecanismes">
+			<option value="Electromagnetisme">
+			<option value="Equacions Diferencials">
+			<option value="Informàtica">
+			<option value="Mètodes Numèrics">
+			<option value="Materials">
+			<option value="Tecnologia del Medi Ambient i Sostenibilitat">
+			<option value="Termodinàmica">
+			<option value="Electrotècnia">
+			<option value="Mecànica dels Medis Continus">
+			<option value="Tecnologia i Selecció de Materials">
+			<option value="Tècniques Estadístiques per la Qualitat">
+			<option value="Mecànica de Fluids">
+			<option value="Organització i Gestió">
+			<option value="Resistència de Materials">
+			<option value="Màquines Elèctriques">
+			<option value="Simulació i Optimització">
+			<option value="Gestió de Projectes">
+			<option value="Electrònica">
+			<option value="Sistemes de Fabricació">
+			<option value="Termotècnia">
+			<option value="Control Automàtic">
+			<option value="Projecte de Grau">
+  		</datalist>
+	</form>
+  		<span onclick="newElement()" class="addBtn">Añadir</span>
+	</div>
+
+	<ul id="myUL">
+	</ul>
+	
+	</div>
+  
+  
+  
+  
+  <!-- SEGUNDA COLUMNA -->
+<div class="column" style="background-color:#F3CA24;">
+    <p class = title2>Notas de Q1 y Q2</p>
+    <select>
+    	<option selected disabled>Escoge tu rendimiento</option>
+  		<option value="Min">Mínimo</option>
+  		<option value="Medio">Medio</option>
+  		<option value="Max">Máximo</option>
+	</select>
+
+    <table>
+		<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Álgebra Lineal:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Cálculo I:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Fundamentos de Informática:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Química I:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Mecánica Fundamental:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Química II:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Cálculo II</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Expresión Gráfica</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Geometría</td><td> <input id="number" type="number"></td></tr>
+	</table>
+	<br>
+	<button type="submit" form="nameform" value="Submit">GENERA TU HORARIO!</button>
+
+	
+  </div>
+</div>
+
+<script>
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("Tienes que escribir algo!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
