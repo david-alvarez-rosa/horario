@@ -1,42 +1,68 @@
-¡¡No modificar el formato!!
+¡No modificar el formato!
 
+* Nota de Selectividad (-1 si no se quiere introducir).
 * Asignaturas ya cursadas:
-  - CODASS
-  - Nota
+  - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
+  - Nota obtenida (-1 si no se quiere introducir)
 * Número de asignaturas para hacer el horario.
-* CODASS de asignaturas para hacer el horario.
-* Número de vecinos más cercanos.
+* Asigaturas para hacer el horario:
+  - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
+  - Nota deseada.
+* Número de vecinos más cercanos (diferente de 0).
+* Restricciones de horario:
+  - Longitud del rango de horas.
+  - Matriz de horario: -2 hora libre, -1 hora ocupada.
 
 
-240011
-5
-240012
-5
-240013
-5
-240014
-5
-240015
-5
-240021
-5
-240022
-5
-240023
-5
-240024
-5
-240025
-5
+Selectividad
+No implementado.
 
-5
-240033
-240041
-240042
-240053
-240044
-
-15
+Álgebra Lineal
+-1
+Cálculo I
+-1
+Mecánica Fundamental
+-1
+Química I
+-1
+Fundamentos de Informática
+-1
+Geometría
+-1
+Cálculo II
+-1
+Termodinámica Fundamental
+-1
+Química II
+-1
+Expresión Gráfica
+-1
 
 
-* Nota: los CODASS de las asignaturas a predecir nota hay que introducirlos de menor a mayor (si no se ordenarán solos).
+6
+
+Electromagnetismo
+5
+Mecánica
+5
+Proyecto I
+5
+Materiales
+5
+Economía y Empresa
+5
+Dinámica de Sistemas
+5
+
+
+12
+
+
+6
+ L  M  X  J  V
+-1 -2 -1 -1 -1
+-2 -2 -2 -2 -2
+-1 -1 -2 -2 -1
+-1 -1 -1 -2 -1
+-2 -1 -1 -1 -2
+-2 -2 -2 -2 -2
