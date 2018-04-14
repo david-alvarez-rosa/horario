@@ -1,6 +1,7 @@
 ¡No modificar el formato!
 
 * Nota de Selectividad (-1 si no se quiere introducir).
+* Número de asignaturas ya cursadas.
 * Asignaturas ya cursadas:
   - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
   - Nota obtenida (-1 si no se quiere introducir)
@@ -15,28 +16,31 @@
 
 
 Selectividad
-No implementado.
+11
+
+
+10
 
 Álgebra Lineal
--0
+5
 Cálculo I
--0
+5
 Mecánica Fundamental
--0
+5
 Química I
--0
+5
 Fundamentos de Informática
--0
+5
 Geometría
--0
+5
 Cálculo II
--0
+5
 Termodinámica Fundamental
--0
+5
 Química II
--0
+5
 Expresión Gráfica
--0
+5
 
 
 6
