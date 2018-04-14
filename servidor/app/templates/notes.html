@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8" >
+    <title>{{ title }} - exemple</title>
+    <script>
+    function close_window() {
+        if (confirm("Close Window?")) {
+          close();
+        }
+    }
+    </script>
+    <style>
+      body{font: 20px sans-serif;}
+    </style>
+  </head>
+
+  <body>
+      <p> rendimiento elegido = {{rend}} </p>
+      <p> vector de notas = [{{sele}},{{algebra}},{{calcul1}},{{info1}},{{quim1}},{{mec_fon}},{{quim2}},{{calc2}},{{expre}},{{geo}}]</p>
+
+      <button onclick="javascript:history.go(-1)";>Volver al Home</button>
+
+  </body>
+  <!--    <a href="javascript:close_window();">close</a> -->
