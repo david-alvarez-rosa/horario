@@ -2,14 +2,13 @@ import pandas as pd
 
 
 # Dado un vector de CODASS, devuelve un vector con los nombres de las asignaturas.
-# Precondición: el vector de CODASS tiene que estar ordenado.
 def decoder(codass):
     df = pd.read_csv('Ficheros/asignaturas.csv')
     df = df[df['CODASS'].isin(codass)]
     df = df.reset_index(drop = True)
     names = []
     for i in range(0, len(df)):
-        names.append(df['NOMBRE'].iloc[i])
+        names += df[df['CODASS'] == names[i]]['NOMBRE'].values.tolist()
     return names
 
 
