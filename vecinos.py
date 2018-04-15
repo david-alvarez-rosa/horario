@@ -1,7 +1,8 @@
 # Da formato a los vecinos más cercanos de matriz (sin primera fila).
-# | CODEX | NOMBRE1 | NOMBRE2 | ... | NOMBREN |
-# |   C   |   NF1   |   NF2   | ... |   NFN   |
-def format_nearest(nearest, matrix, sele):
+# | CODEX | NOMBRE1 | NOMBRE2 | ... | NOMBREN | SELE |
+# |   C   |   NF1   |   NF2   | ... |   NFN   |  NS  |
+# Selectividad solo si ha sido introducida por usuario.
+def format_nearest(nearest, matrix):
     nearest_form = []
     for i in range(0, len(nearest)):
         nearest_form += [matrix[nearest[i][1]] + [round(nearest[i][0], 2)]]
@@ -52,11 +53,6 @@ def k_nearest_neighbors(k, matrix, notas, l1, sele):
     diff = differences(notas, nearest, k, matrix, l1)
 
     # Doy formato de matriz al vector nearest.
-    nearest_form = format_nearest(nearest, matrix, sele)
+    nearest_form = format_nearest(nearest, matrix)
 
-    print(matrix[nearest[0][1]])
-    print(sele)
-    print(notas)
-    print(distance(nearest[0][1], notas, matrix, sele))
-    
     return nearest, diff, nearest_form

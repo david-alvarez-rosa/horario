@@ -57,7 +57,7 @@ def predict_grades(nearest, codas, notas, matrix, k, diff, sele):
 
 
 # Precondición: asigs2 está ordenado de manera creciente (mismo orden que matriz).
-def predictor_main(codas, notas, k, l1, sele):
+def predictor_main(codas, notas, k, l_curs, sele):
     # Abrir fichero con todos los datos (está ordenado).
     df = pd.read_csv('Ficheros/data.csv')
 
@@ -65,7 +65,8 @@ def predictor_main(codas, notas, k, l1, sele):
     matrix = create_matrix(df, codas, sele)
 
     # Vector con los k vecinos más cercanos y diferencia.
-    nearest, diff, nearest_form = vc.k_nearest_neighbors(k, matrix, notas, l1, sele)
+    nearest, diff, nearest_form = vc.k_nearest_neighbors(k, matrix, notas, \
+                                                         l_curs, sele)
 
     # Predecir notas.
     grades = predict_grades(nearest, codas, notas, matrix, k, diff, sele)

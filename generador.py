@@ -24,7 +24,8 @@ def sort(u, v, w):
         u[i], u[posMin] = u[posMin], u[i]
         v[i], v[posMin] = v[posMin], v[i]
         w[i], w[posMin] = w[posMin], w[i]        
-        
+
+
 # Primera asignación de horas al fin de semana.
 def update_finde(hours):
     n = len(hours)
@@ -76,7 +77,8 @@ def complete(horario, day):
 def next_minimum_uncomplete(horario, hras_est_dia):
     minDay = -1
     for day in range(0, 5):
-        if not complete(horario, day) and (minDay == -1 or hras_est_dia[day] < hras_est_dia[minDay]):
+        if not complete(horario, day) and \
+           (minDay == -1 or hras_est_dia[day] < hras_est_dia[minDay]):
             minDay = day
     return minDay
 
