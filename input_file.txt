@@ -1,13 +1,15 @@
 ¡No modificar el formato!
 
 * Nota de Selectividad (-1 si no se quiere introducir).
+* Número de asignaturas ya cursadas.
 * Asignaturas ya cursadas:
   - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
   - Nota obtenida (-1 si no se quiere introducir)
 * Número de asignaturas para hacer el horario.
+* Rendimiento: 0 (mínimo), 1 (medio), 2 (máximo), -1 (manual)
 * Asigaturas para hacer el horario:
   - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
-  - Nota deseada.
+  - Nota deseada (no necesaria si se ha elegido rendimiento).
 * Número de vecinos más cercanos (diferente de 0).
 * Restricciones de horario:
   - Longitud del rango de horas.
@@ -15,28 +17,34 @@
 
 
 Selectividad
-No implementado.
+-1
+
+
+10
 
 Álgebra Lineal
--0
+-1
 Cálculo I
--0
+-1
 Mecánica Fundamental
--0
+-1
 Química I
--0
+-1
 Fundamentos de Informática
--0
-Geometría
--0
+-1
 Cálculo II
--0
+-1
+Geometría
+-1
 Termodinámica Fundamental
--0
+-1
 Química II
--0
+-1
 Expresión Gráfica
--0
+-1
+
+
+-1
 
 
 6
@@ -62,7 +70,7 @@ Dinámica de Sistemas
  L  M  X  J  V
 -1 -2 -1 -1 -1
 -2 -2 -2 -2 -2
--1 -1 -2 -2 -1
+-2 -1 -2 -2 -1
 -1 -1 -1 -2 -1
 -2 -1 -1 -1 -2
 -2 -2 -2 -2 -2

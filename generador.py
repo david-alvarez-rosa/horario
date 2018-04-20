@@ -12,7 +12,7 @@ def comp(a, b):
 
         
 # Ordenamiento por selección.
-def sort(u, v):
+def sort(u, v, w):
     n = len(u)
     for i in range(0, n):
         min = u[i]
@@ -23,8 +23,9 @@ def sort(u, v):
                 posMin = j
         u[i], u[posMin] = u[posMin], u[i]
         v[i], v[posMin] = v[posMin], v[i]
+        w[i], w[posMin] = w[posMin], w[i]        
 
-        
+
 # Primera asignación de horas al fin de semana.
 def update_finde(hours):
     n = len(hours)
@@ -76,7 +77,8 @@ def complete(horario, day):
 def next_minimum_uncomplete(horario, hras_est_dia):
     minDay = -1
     for day in range(0, 5):
-        if not complete(horario, day) and (minDay == -1 or hras_est_dia[day] < hras_est_dia[minDay]):
+        if not complete(horario, day) and \
+           (minDay == -1 or hras_est_dia[day] < hras_est_dia[minDay]):
             minDay = day
     return minDay
 
@@ -125,25 +127,28 @@ def distribute(hours, horario, finde):
         hours[i] = 0
 
         
-def generator_main(hours2, asigs2, horario):
-    # Creo copia del vector de horas y de asigs, para no sobreescribirlo.
-    hours = list(hours2)
-    asigs = list(asigs2)
+def generator_main(horas, nombres_des, horario):
+    # Creo copia del vector de horas y de nombres, para no sobreescribirlo.
+    hours = list(horas)
+    nombres = list(nombres_des)
 
-    sort(hours, asigs)
+    sort(hours, nombres, [0]*len(hours))
     finde = update_finde(hours)
-    sort(hours, asigs)
+    sort(hours, nombres, finde)
     distribute(hours, horario, finde)
 
     # Convirtiendo el horario codificado, a horario con nombres.
     for i in range(0, len(horario)):
         for j in range(0, 5):
             k = horario[i][j]
-            if k >= 0: horario[i][j] = asigs[k]
+            if k >= 0: horario[i][j] = nombres[k]
             elif k == -1: horario[i][j] = '-----------------'
             else: horario[i][j] = ''
 
+    # Reordenando el vector finde, como nombres_des.
+    finde_des = []
     for i in range(0, len(finde)):
-        finde[i] = [asigs[i], finde[i]]
+        pos = nombres.index(nombres_des[i])
+        finde_des.append(finde[pos])
 
-    return finde;
+    return finde_des;
