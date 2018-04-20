@@ -16,10 +16,7 @@
 <body bgcolor = #F3CA24>
 <!-- APARTADO HORARIO -->
 <link rel="stylesheet" type="text/css" href="DPS.css">
-<p class = observations> Smart_hours es un servicio ofrecido por esudiantes de Ingniería Industrial (ETSEIB). Mediante el análisis y predicción </br> de tus notas, montaremos un horario a tu medida, respetando todas tus horas ocupadas.</br></p>
-</br>
-<p class = observations2> Porfavor, marca las horas que no puedas estudiar para mejorar tu horario. </p>
-</br>
+<p class = observations> Marca las horas que no puedas estudiar para que podamos generarte el mejor horario posible. </p>
 <table id="timeTable">
             <th></th>
             <th class="titelCell" align="center">09:00</th>
@@ -131,9 +128,83 @@
             </tr>
 </table>
 
-<br/>
 
-<div class="wrapper"> <button type=button>SIGUIENTE PÁGINA</button> </div>
+<div class="row">
+  <!-- PRIMERA COLUMNA -->
+  <div class="column" style="background-color:#F3CA24;">
+	<div id="myDIV" class="header">
+  		<p class="title2" style="margin:5px">Asignaturas matriculadas</p>
+  		<form action="/action_page.php" method="get">
+  		<input list="abc" type="text" id="myInput" placeholder="Añade asignaturas...">
+  		<datalist id="abc">
+    		<option value="Mecànica">
+			<option value="Estadística">
+			<option value="Economia i Empresa">
+			<option value="Dinàmica de Sistemes">
+			<option value="Teoria de Màquines i Mecanismes">
+			<option value="Electromagnetisme">
+			<option value="Equacions Diferencials">
+			<option value="Informàtica">
+			<option value="Mètodes Numèrics">
+			<option value="Materials">
+			<option value="Tecnologia del Medi Ambient i Sostenibilitat">
+			<option value="Termodinàmica">
+			<option value="Electrotècnia">
+			<option value="Mecànica dels Medis Continus">
+			<option value="Tecnologia i Selecció de Materials">
+			<option value="Tècniques Estadístiques per la Qualitat">
+			<option value="Mecànica de Fluids">
+			<option value="Organització i Gestió">
+			<option value="Resistència de Materials">
+			<option value="Màquines Elèctriques">
+			<option value="Simulació i Optimització">
+			<option value="Gestió de Projectes">
+			<option value="Electrònica">
+			<option value="Sistemes de Fabricació">
+			<option value="Termotècnia">
+			<option value="Control Automàtic">
+			<option value="Projecte de Grau">
+  		</datalist>
+	</form>
+  		<span onclick="newElement()" class="addBtn">Añadir</span>
+	</div>
+
+	<ul id="myUL">
+	</ul>
+	
+	</div>
+  
+  
+  
+  
+  <!-- SEGUNDA COLUMNA -->
+<div class="column" style="background-color:#F3CA24;">
+    <p class = title2>Notas de Q1 y Q2</p>
+    <select>
+    	<option selected disabled>Escoge tu rendimiento</option>
+  		<option value="Min">Mínimo</option>
+  		<option value="Medio">Medio</option>
+  		<option value="Max">Máximo</option>
+	</select>
+
+    <table>
+		<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Álgebra Lineal:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Cálculo I:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Fundamentos de Informática:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Química I:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Mecánica Fundamental:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Química II:</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Cálculo II</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Expresión Gráfica</td><td> <input id="number" type="number"></td></tr>
+		<tr><td>Geometría</td><td> <input id="number" type="number"></td></tr>
+	</table>
+	<br>
+	<button type="submit" form="nameform" value="Submit">GENERA TU HORARIO!</button>
+
+	
+  </div>
+</div>
 
 <script src=lista_asig.js></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
