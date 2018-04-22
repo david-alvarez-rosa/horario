@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proyecto I - Horario</title>
+    <p class = title1>Smart_hours.</p>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel = "stylesheet" type = "text/css" href = "../static/style.css" />
+  </head>
+
+
+</head>
+<!-- HEADER OK -->
+<body bgcolor = #F3CA24>
+
+  <script src=lista_asig.js></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="../static/jquery.min.js"></script>
+  <script src="../static/horario.js"></script>
+  <!-- APARTADO HORARIO -->
+  <link rel="stylesheet" type="text/css" href="../static/DPS.css">
+  <p class = observations> Smart_hours es un servicio ofrecido por esudiantes de Ingniería Industrial (ETSEIB). Mediante el análisis y predicción </br> de tus notas, montaremos un horario a tu medida, respetando todas tus horas ocupadas.</br></p>
+</br>
+  <p class = observations2> Porfavor, marca las horas que no puedas estudiar para mejorar tu horario. </p>
+</br>
+<form action="/pagina2" method="post">
+  <table id="timeTable">
+    <th></th>
+    <th class="titelCell" align="center">09:00</th>
+    <th class="titelCell" align="center">10:00</th>
+    <th class="titelCell" align="center">11:00</th>
+    <th class="titelCell" align="center">12:00</th>
+    <th class="titelCell" align="center">13:00</th>
+    <th class="titelCell" align="center">14:00</th>
+    <th class="titelCell" align="center">15:00</th>
+    <th class="titelCell" align="center">16:00</th>
+    <th class="titelCell" align="center">17:00</th>
+    <th class="titelCell" align="center">18:00</th>
+    <th class="titelCell" align="center">19:00</th>
+    <th class="titelCell" align="center">20:00</th>
+    <th class="titelCell" align="center">21:00</th>
+    <th class="titelCell" align="center">22:00</th>
+    <th class="titelCell" align="center">23:00</th>
+
+    <tr>
+      <th class="dayCell"> Mon</th>
+      <td class="ticCell" id="19" ></td>
+      <td class="ticCell" id="110" ></td>
+      <td class="ticCell" id="111" ></td>
+      <td class="ticCell" id="112" ></td>
+      <td class="ticCell" id="113" ></td>
+      <td class="ticCell" id="114" ></td>
+      <td class="ticCell" id="115" ></td>
+      <td class="ticCell" id="116" ></td>
+      <td class="ticCell" id="117" ></td>
+      <td class="ticCell" id="118" ></td>
+      <td class="ticCell" id="119" ></td>
+      <td class="ticCell" id="120" ></td>
+      <td class="ticCell" id="121" ></td>
+      <td class="ticCell" id="122" ></td>
+      <td class="ticCell" id="123" ></td>
+
+    </tr>
+    <tr>
+      <th class="dayCell"> Tue</th>
+      <td class="ticCell" id="29" ></td>
+      <td class="ticCell" id="210" ></td>
+      <td class="ticCell" id="211" ></td>
+      <td class="ticCell" id="212" ></td>
+      <td class="ticCell" id="213" ></td>
+      <td class="ticCell" id="214" ></td>
+      <td class="ticCell" id="215" ></td>
+      <td class="ticCell" id="216" ></td>
+      <td class="ticCell" id="217" ></td>
+      <td class="ticCell" id="218" ></td>
+      <td class="ticCell" id="219" ></td>
+      <td class="ticCell" id="220" ></td>
+      <td class="ticCell" id="221" ></td>
+      <td class="ticCell" id="222" ></td>
+      <td class="ticCell" id="223" ></td>
+    </tr>
+    <tr>
+      <th class="dayCell"> Wed</th>
+      <td class="ticCell" id="39" ></td>
+      <td class="ticCell" id="310" ></td>
+      <td class="ticCell" id="311" ></td>
+      <td class="ticCell" id="312" ></td>
+      <td class="ticCell" id="313" ></td>
+      <td class="ticCell" id="314" ></td>
+      <td class="ticCell" id="315" ></td>
+      <td class="ticCell" id="316" ></td>
+      <td class="ticCell" id="317" ></td>
+      <td class="ticCell" id="318" ></td>
+      <td class="ticCell" id="319" ></td>
+      <td class="ticCell" id="320" ></td>
+      <td class="ticCell" id="321" ></td>
+      <td class="ticCell" id="322" ></td>
+      <td class="ticCell" id="323" ></td>
+    </tr>
+    <tr>
+      <th class="dayCell"> Thu</th>
+      <td class="ticCell" id="49" ></td>
+      <td class="ticCell" id="410" ></td>
+      <td class="ticCell" id="411" ></td>
+      <td class="ticCell" id="412" ></td>
+      <td class="ticCell" id="413" ></td>
+      <td class="ticCell" id="414" ></td>
+      <td class="ticCell" id="415" ></td>
+      <td class="ticCell" id="416" ></td>
+      <td class="ticCell" id="417" ></td>
+      <td class="ticCell" id="418" ></td>
+      <td class="ticCell" id="419" ></td>
+      <td class="ticCell" id="420" ></td>
+      <td class="ticCell" id="421" ></td>
+      <td class="ticCell" id="422" ></td>
+      <td class="ticCell" id="423" ></td>
+    </tr>
+    <tr>
+      <th class="dayCell"> Fri</th>
+      <td class="ticCell" id="59" ></td>
+      <td class="ticCell" id="510" ></td>
+      <td class="ticCell" id="511" ></td>
+      <td class="ticCell" id="512" ></td>
+      <td class="ticCell" id="513" ></td>
+      <td class="ticCell" id="514" ></td>
+      <td class="ticCell" id="515" ></td>
+      <td class="ticCell" id="516" ></td>
+      <td class="ticCell" id="517" ></td>
+      <td class="ticCell" id="518" ></td>
+      <td class="ticCell" id="519" ></td>
+      <td class="ticCell" id="520" ></td>
+      <td class="ticCell" id="521" ></td>
+      <td class="ticCell" id="522" ></td>
+      <td class="ticCell" id="523" ></td>
+    </tr>
+  </table>
+
+  <br/>
+
+</form>
+
+<div class="wrapper">
+  <button type="button" onclick="location.href='/pagina2';"> SIGUIENTE PÁGINA </button>
+</div>
+
+
+</body>
+</html>

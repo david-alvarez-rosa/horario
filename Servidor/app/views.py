@@ -27,19 +27,17 @@ a18 = ''
 a19 = ''
 a20 = ''
 
+
 @app.route('/')
 @app.route('/index')
 def index():
-    
-    return render_template('p1.html',
-                           title='Home',
-                           )
-@app.route('/pagina2', methods=['POST'])
+    return render_template('p1.html', title = 'Home')
+
+
+@app.route('/pagina2')
 def next1():
-    
-    return render_template('p2.html',
-                           title='pagina2',
-                           )
+    return render_template('p2.html', title='pagina2')
+
 
 @app.route('/notes', methods=['POST'])
 def notes():
