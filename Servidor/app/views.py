@@ -18,15 +18,19 @@ def deseadas():
 
 @app.route('/cursadas', methods = ['POST'])
 def cursadas():
+    # Leer nombres de las asignaturas deseadas para hacer horario.
     nombres_des = request.form.getlist("check_list[]")
-    nombres_des_file = open('nombres_des_file.txt', 'w')
+    # Guardarlos en un fichero por filas.
+    nombres_des_file = open('app/tmp/nombres_des_file.txt', 'w')
     for i in range(0, len(nombres_des)):
         nombres_des_file.write(nombres_des[i] + '\n')
+        
     return render_template('cursadas.html', title='cursadas')
 
 
 @app.route('/resultados', methods = ['POST'])
 def resultados():
+    # Notas cursadas.
     sele = request.form['input_sele']
     algebra = request.form['input_algebra']
     calcul1 = request.form['input_calcul1']
@@ -38,14 +42,20 @@ def resultados():
     geo = request.form['input_geo']
     quim2 = request.form['input_quim2']
     termo = request.form['input_termo']
-    rend = request.form['rend']
 
-    rend = str(rend)
+    # Convertir notas a lista.
     notas = [float(sele), float(algebra), float(calcul1), float(info1),
              float(mec_fon), float(quim1), float(calc2), float(expre),
              float(geo), float(quim2), float(termo)]
-    nombres_des_file = open('nombres_des_file.txt', 'r')
+
+    # Leer rendimiento como string.
+    rend = request.form['rend']
+    rend = str(rend)
+
+    # Leer nombres asignaturas deseadas desde fichero.
+    nombres_des_file = open('app/tmp/nombres_des_file.txt', 'r')
     lines = nombres_des_file.readlines()
+    # Guardar nombres en lista.
     nombres_des = []
     for i in range(0, len(lines)):
         nombre = lines[i]
@@ -53,8 +63,7 @@ def resultados():
         nombres_des.append(nombre)
             
     # Para probrarlo.
-    notas_des = 6*[5]
-    rend = -1
+    notas_des = [5]*len(nombres_des)
     horario = [
         [-1, -2, -1, -1, -1],
         [-2, -2, -2, -2, -2],
@@ -73,8 +82,8 @@ def resultados():
         [-2, -1, -2, -2, -1]
     ]
 
+    # Ejecutar el programa.
     main.main(notas, rend , nombres_des, notas_des, horario)
-
 
     return render_template('resultados.html')
     
@@ -94,6 +103,3 @@ def resultados():
     #                        expre = float(expre),
     #                        geo=float(geo),
     #                        rend = str(rend))
-
-notas = []
-print(notas)

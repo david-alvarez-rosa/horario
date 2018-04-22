@@ -22,8 +22,8 @@ def distance(row, notas, matrix, sele):
 
 
 # Cálculo de la media de diferencias de notas (con signo) entre usuario y vecinos.
-def differences(notas, nearest, k, matrix, l1):
-    if l1 == 0: return 0 # Caso especial si ninguna nota se introduce.
+def differences(notas, nearest, k, matrix, l_curs):
+    if l_curs == 0: return 0 # Caso especial si ninguna nota se introduce.
     # Posible error por falta de alumnos 'compatibles'.
     if len(nearest) < k: k = len(nearest)
     diff_tot = 0
@@ -33,13 +33,13 @@ def differences(notas, nearest, k, matrix, l1):
         for j in range(0, len(notas)):
             if notas[j] >= 0:
                 diff += notas[j] - matrix[row][j + 1]
-        diff_tot += diff/l1
+        diff_tot += diff/l_curs
     return diff_tot/k
 
 
 # Retorna vector con las filas (en la matriz) de los k vecinos más cercanos.
 # Devuelve la diferencia total media (con signo) a sus k vecinos más cercanos.
-def k_nearest_neighbors(k, matrix, notas, l1, sele):
+def k_nearest_neighbors(k, matrix, notas, l_curs, sele):
     # Calculo todas las distancias.
     nearest = []
     for row in range(1, len(matrix)):
@@ -50,7 +50,7 @@ def k_nearest_neighbors(k, matrix, notas, l1, sele):
     nearest = nearest[0:k]
 
     # Calculo diferencia media total.
-    diff = differences(notas, nearest, k, matrix, l1)
+    diff = differences(notas, nearest, k, matrix, l_curs)
 
     # Doy formato de matriz al vector nearest.
     nearest_form = format_nearest(nearest, matrix)
