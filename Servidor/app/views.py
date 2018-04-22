@@ -18,8 +18,10 @@ def deseadas():
 
 @app.route('/cursadas', methods = ['POST'])
 def cursadas():
-    a = request.form.getlist("check_list[]")
-    print(a)
+    nombres_des = request.form.getlist("check_list[]")
+    nombres_des_file = open('nombres_des_file.txt', 'w')
+    for i in range(0, len(nombres_des)):
+        nombres_des_file.write(nombres_des[i] + '\n')
     return render_template('cursadas.html', title='cursadas')
 
 
@@ -39,16 +41,18 @@ def resultados():
     rend = request.form['rend']
 
     rend = str(rend)
-    print(rend)
     notas = [float(sele), float(algebra), float(calcul1), float(info1),
              float(mec_fon), float(quim1), float(calc2), float(expre),
              float(geo), float(quim2), float(termo)]
-    print(notas)
-
-
+    nombres_des_file = open('nombres_des_file.txt', 'r')
+    lines = nombres_des_file.readlines()
+    nombres_des = []
+    for i in range(0, len(lines)):
+        nombre = lines[i]
+        nombre = nombre[0:len(nombre) - 1]
+        nombres_des.append(nombre)
+            
     # Para probrarlo.
-    nombres_des = ['Electromagnetismo', 'Mecánica', 'Proyecto I', 'Materiales', \
-                   'Economía y Empresa', 'Dinámica de Sistemas']
     notas_des = 6*[5]
     rend = -1
     horario = [
@@ -70,23 +74,26 @@ def resultados():
     ]
 
     main.main(notas, rend , nombres_des, notas_des, horario)
+
+
+    return render_template('resultados.html')
     
 
     # en el return tornem les variables per separat, però es pot tornar un dict
     # amb els valors a tornar {'id':'valor'}
-    return render_template('notes.html',
-                           title = 'Notes',
-                           sele = float(sele),
-                           algebra = float(algebra),
-                           calcul1=float(calcul1),
-                           info1 = float(info1),
-                           quim1 = float(quim1),
-                           mec_fon = float(mec_fon),
-                           quim2 = float(quim2),
-                           calc2 = float(calc2),
-                           expre = float(expre),
-                           geo=float(geo),
-                           rend = str(rend))
+    # return render_template('notes.html',
+    #                        title = 'Notes',
+    #                        sele = float(sele),
+    #                        algebra = float(algebra),
+    #                        calcul1=float(calcul1),
+    #                        info1 = float(info1),
+    #                        quim1 = float(quim1),
+    #                        mec_fon = float(mec_fon),
+    #                        quim2 = float(quim2),
+    #                        calc2 = float(calc2),
+    #                        expre = float(expre),
+    #                        geo=float(geo),
+    #                        rend = str(rend))
 
 notas = []
 print(notas)
