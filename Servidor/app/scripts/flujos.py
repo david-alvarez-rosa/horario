@@ -71,7 +71,7 @@ def print_results_html(nombres_des, notas_des, l_des, notas_esp, nombres, \
                sele, notas_med, creds, rend):
 
     # Crear la página de resultados.
-    resultados = open('app/tmp/resultados.html', 'w')
+    resultados = open('app/templates/resultados.html', 'w')
 
     resultados.write('<!DOCTYPE html>' + '\n')
     resultados.write('<html>' + '\n')

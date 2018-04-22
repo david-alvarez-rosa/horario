@@ -4,7 +4,6 @@ from app.scripts import horas as hr
 from app.scripts import generador as gn
 from app.scripts import rendimiento as rd
 from app.scripts import flujos as flu
-from app.scripts import terminal as ter
 
 
 def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
@@ -15,6 +14,13 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
 
     # Predecir notas.
     grades, nearest_form, diff = pr.predictor_main(codas, notas, k, l_curs, sele)
+
+    # Posible error si no hay ningún alumno 'commpatible' con usuario.
+    if len(nearest_form) == 0:
+        print('\n Ningún alumno compatible! \n')
+        return
+
+    # Reordenar las notas como las introdujo el usuario.
     notas_esp = []
     for i in range(0, l_des):
         pos = nombres.index(nombres_des[i])

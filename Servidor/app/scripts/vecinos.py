@@ -26,6 +26,10 @@ def differences(notas, nearest, k, matrix, l_curs):
     if l_curs == 0: return 0 # Caso especial si ninguna nota se introduce.
     # Posible error por falta de alumnos 'compatibles'.
     if len(nearest) < k: k = len(nearest)
+    # Corrección de error si no hay ningún alumno 'compatible'.
+    if k == 0: return 0
+
+    # Cálculo de diferencia total.
     diff_tot = 0
     for i in range(0, k):
         row = nearest[i][1]
