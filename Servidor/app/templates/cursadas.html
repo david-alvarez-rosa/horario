@@ -20,14 +20,15 @@
   <p class = observations2> Para finalizar, introduce el máximo de datos posibles.</p>
   
   <div style="background-color:#F3CA24;">
-    <form action="/notes" method="post">
+    <form action="/resultados" method="post">
       <p class = observations>Escoge el rendimiento que desees.</p>
+      <div class="wrapper">
       <select name="rend">
-	
   	<option value="Min" >Mínimo </option>
   	<option value="Med">Medio</option>
   	<option value="Max" >Máximo</option>
       </select>
+      </div>
 
       <table>
 	<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number" name="input_sele" value = -1></td></tr>
@@ -42,9 +43,10 @@
 	<tr><td>Geometría</td><td> <input id="number" type="number" name="input_geo"value = -1></td></tr>
       </table>
 
+      
+  <div class="wrapper">
+    <button type="submit"> GENERA TU HORARIO! </button>
   </div>
-
-  <div class="wrapper"> <button type=button>GENERA TU HORARIO!</button> </div>
 
   </form>
 
