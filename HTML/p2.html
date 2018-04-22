@@ -1,66 +1,111 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Proyecto I - Horario</title>
-<p class = title1>Smart_hours.</p>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel = "stylesheet" type = "text/css" href = "style.css" />
- </head>
+  <head>
+    <title>Proyecto I - Horario</title>
+    <p class = title1>Smart_hours.</p>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel = "stylesheet" type = "text/css" href = "style.css" />
+  </head>
 
 
 </head>
 <!-- HEADER OK-->
 <body bgcolor = #F3CA24>
-<link rel="stylesheet" type="text/css" href="DPS.css">
-<p class = observations2> Porfavor, introduce las asignaturas que estés matriculado.</p>
+  <link rel="stylesheet" type="text/css" href="DPS.css">
+  <p class = observations2> Porfavor, introduce las asignaturas que estés matriculado.</p>
 
-	<div id="myDIV" class="header">
-  		<p class="title2" style="margin:5px">Asignaturas matriculadas</p>
-  		<form action="/action_page.php" method="get">
-  		<input list="abc" type="text" id="myInput" placeholder="Añade asignaturas...">
-  		<datalist id="abc">
-    		<option value="Mecànica">
-			<option value="Estadística">
-			<option value="Economia i Empresa">
-			<option value="Dinàmica de Sistemes">
-			<option value="Teoria de Màquines i Mecanismes">
-			<option value="Electromagnetisme">
-			<option value="Equacions Diferencials">
-			<option value="Informàtica">
-			<option value="Mètodes Numèrics">
-			<option value="Materials">
-			<option value="Tecnologia del Medi Ambient i Sostenibilitat">
-			<option value="Termodinàmica">
-			<option value="Electrotècnia">
-			<option value="Mecànica dels Medis Continus">
-			<option value="Tecnologia i Selecció de Materials">
-			<option value="Tècniques Estadístiques per la Qualitat">
-			<option value="Mecànica de Fluids">
-			<option value="Organització i Gestió">
-			<option value="Resistència de Materials">
-			<option value="Màquines Elèctriques">
-			<option value="Simulació i Optimització">
-			<option value="Gestió de Projectes">
-			<option value="Electrònica">
-			<option value="Sistemes de Fabricació">
-			<option value="Termotècnia">
-			<option value="Control Automàtic">
-			<option value="Projecte de Grau">
-  		</datalist>
-	</form>
-  		<span onclick="newElement()" class="addBtn">Añadir</span>
-	</div>
-	<ul id="myUL"></ul>
+  <div id="myDIV" class="header">
+    <p class="title2" style="margin:5px">Asignaturas matriculadas</p>
+    <form action="/action_page.php" method="get">
+      <input list="abc" type="text" id="myInput" placeholder="Añade asignaturas...">
+      <datalist id="abc">
+	<option value="Álgebra Lineal">
+	<option value="Cálculo I">
+	<option value="Mecánica Fundamental">
+	<option value="Química I">
+	<option value="Fundamentos de Informática">
+	<option value="Geometría">
+	<option value="Cálculo II">
+	<option value="Termodinámica Fundamental">
+	<option value="Química II">
+	<option value="Expresión Gráfica">
+	<option value="Electromagnetismo">
+	<option value="Métodos Numéricos">
+	<option value="Materiales">
+	<option value="Economía y Empresa">
+	<option value="Estadística">
+	<option value="Dinámica de Sistemas">
+	<option value="Proyecto I">
+	<option value="Tecnología del Medio Ambiente y Sostenibilidad">
+	<option value="Termodinámica">
+	<option value="Electrotecnia">
+	<option value="Mecánica de los Medios Continuos">
+	<option value="Técnicas Estadísticas para la Calidad">
+	<option value="Mecánica de Fluidos">
+	<option value="Organización y Gestión">
+	<option value="Resistencia de Materiales">
+	<option value="Proyecto II">
+	<option value="Gestión de Proyectos">
+	<option value="Electrónica">
+	<option value="Sistemas de Fabricación">
+	<option value="Ecuaciones Diferenciales">
+	<option value="Informática">
+	<option value="Mecánica">
+	<option value="Teoría de Máquinas y Mecanismos">
+	<option value="Tecnología y Selección de Materiales">
+	<option value="Máquinas Eléctricas">
+	<option value="Optimización y Simulación">
+	<option value="Termotecnia">
+	<option value="Control Automático">
+	<option value="Ampliación de Mecánica">
+	<option value="Comunicación de Información Técnica">
+	<option value="Debates Sobre Tecnología y Sociedad">
+	<option value="Los Orígenes de la Ingeniería Moderna">
+	<option value="Juegos para Computadores. Estructura y Desarrollo">
+	<option value="Taller Eléctrico">
+	<option value="Tecnología de la Luz">
+	<option value="Tecnologías Digitales para la Comunicación de los Proyectos">
+	<option value="Historia de la Ingeniería Industrial. La Escuela de Barcelona">
+	<option value="Ampliación de Química">
+	<option value="Rehabilitación y Eficiencia Energética en la Edificación">
+	<option value="Movilidad Eléctrica">
+	<option value="Desarrollo de Aplicaciones Basadas en Microcontroladores">
+	<option value="Taller Electrónico">
+	<option value="Sistemas Mecánicos">
+	<option value="Vehículos">
+	<option value="Desarrollo Tecnológico y Científico en la Antigüedad. Egipto y Oriente Próximo">
+	<option value="Análisis de Datos para la Industria y los Servicios">
+	<option value="Fusión Nuclear. Iter">
+	<option value="Logística Control de Flotas y Sig">
+	<option value="La Historia de la Matemática Aplicada en la Ingeniería">
+	<option value="Albert Einstein y la Ciencia y la Técnica del Siglo XX">
+	<option value="Cultura Tecnología e Historia en China y Japón">
+	<option value="Ingeniería Industria y Sociedad">
+	<option value="Dinámica Computacional de Fluidos">
+	<option value="Sistemas de Distribución de Tuberías">
+	<option value="Sistemas de Gestión">
+	<option value="Ampliación de Resistencia de Materiales">
+	<option value="Análisis de Componentes Estructurales y Mecánicos para el MEF">
+	<option value="La Robótica en la Ingeniería">
+	<option value="Tecnología Ferroviaria">
+	<option value="Polímeros en la Industria">
+	<option value="Técnicas de Ensayos No Destructivos Industriales">
+	<option value="Comunicación Oral en Inglés Académico y Profesional">
+      </datalist>
+    </form>
+    <span onclick="newElement()" class="addBtn">Añadir</span>
+  </div>
+  <ul id="myUL"></ul>
 	</br>  
 	<div class="wrapper"> <button type=button>SIGUIENTE PÁGINA</button> </div>
 
-<script src=lista_asig.js></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src=jquery.min.js></script>
-<script src=horario.js></script>
+	<script src=lista_asig.js></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src=jquery.min.js></script>
+	<script src=horario.js></script>
 </body>
 </html>
