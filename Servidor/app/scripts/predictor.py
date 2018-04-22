@@ -1,5 +1,5 @@
 import pandas as pd
-import vecinos as vc
+from app.scripts import vecinos as vc
 
 
 # Dada una posición, devuelve el inicio del siguiente alumno (con CODEX distinto).
@@ -59,7 +59,7 @@ def predict_grades(nearest, codas, notas, matrix, k, diff, sele):
 # Precondición: asigs2 está ordenado de manera creciente (mismo orden que matriz).
 def predictor_main(codas, notas, k, l_curs, sele):
     # Abrir fichero con todos los datos (está ordenado).
-    df = pd.read_csv('../databases/data.csv')
+    df = pd.read_csv('app/databases/data.csv')
 
     # Crear la matriz.
     matrix = create_matrix(df, codas, sele)

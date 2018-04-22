@@ -3,7 +3,7 @@ import pandas as pd
 
 # Dado un vector de CODASS, devuelve un vector con los nombres de las asignaturas.
 def decoder(codass):
-    df = pd.read_csv('../databases/asignaturas.csv')
+    df = pd.read_csv('app/databases/asignaturas.csv')
     df = df[df['CODASS'].isin(codass)]
     df = df.reset_index(drop = True)
     names = []
@@ -14,7 +14,7 @@ def decoder(codass):
 
 # Dado un vector de nombres de asignaturas, devuelve un vector con los CODASS.
 def encoder(names):
-    df = pd.read_csv('../databases/asignaturas.csv')
+    df = pd.read_csv('app/databases/asignaturas.csv')
     df = df[df['NOMBRE'].isin(names)]
     df = df.reset_index(drop = True)
     codass = []

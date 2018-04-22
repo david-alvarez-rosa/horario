@@ -1,9 +1,10 @@
 import pandas as pd
-import codificador as cd
-import predictor as pr
-import horas as hr
-import generador as gn
-import rendimiento as rd
+from app.scripts import codificador as cd
+from app.scripts import predictor as pr
+from app.scripts import horas as hr
+from app.scripts import generador as gn
+from app.scripts import rendimiento as rd
+from app.scripts import terminal as ter
 
 
 # Convertir input de la web en input válido para el programa.
@@ -32,6 +33,15 @@ def convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario):
     l_des = len(nombres_des)
     codas_des = cd.encoder(nombres_des)
 
+    # Rendimiento.
+    if rend == 'Min':
+        rend = 0
+    elif rend == 'Med':
+        rend = 1
+    elif rend == 'Max':
+        rend = 2
+    else: rend  = -1
+
     # Unir todo el input y ordenarlo simultáneamente por CODASS.
     codas = codas_curs + codas_des
     # Guardar las notas deseadas negativas (para identificarlas después).
@@ -50,7 +60,7 @@ def convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario):
         k, horario, rend, notas_curs, l_horario
 
 
-def main(notas_curs_todas, nombres_des, rend, notas_des, horario):
+def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     # Convertir input de la web en input válido para el programa.
     sele, l_curs, l_des, nombres_des, notas_des, codas, nombres, notas, k, \
         horario, rend, notas_curs, l_horario = \
@@ -64,7 +74,7 @@ def main(notas_curs_todas, nombres_des, rend, notas_des, horario):
         notas_esp.append(grades[pos])
 
     # Crear vector de medias y de creditos para asignaturas deseadas.
-    df = pd.read_csv('../databases/asignaturas.csv')
+    df = pd.read_csv('app/databases/asignaturas.csv')
     df = df[df['NOMBRE'].isin(nombres_des)]
     df = df.reset_index(drop = True)
     notas_med = []
@@ -83,3 +93,7 @@ def main(notas_curs_todas, nombres_des, rend, notas_des, horario):
     finde_des = gn.generator_main(horas, nombres_des, horario)
 
     # Devolver resultados. Falta.
+    # Generar output.
+    ter.print_results(nombres_des, notas_des, l_des, notas_esp, nombres, \
+                      nearest_form, notas, diff, horas, horario, finde_des, \
+                      sele, notas_med, creds, rend)
