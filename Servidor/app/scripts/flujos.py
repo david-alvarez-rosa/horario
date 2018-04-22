@@ -56,7 +56,7 @@ def convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario):
 
 # Escribir tabla en html dado una matriz de Python.
 def print_table_html(matrix, resultados):
-    resultados.write('<table>' + '\n')
+    resultados.write('<table align="center">' + '\n')
     for i in range(0, len(matrix)):
         resultados.write('<tr>' + '\n')
         for j in range(0, len(matrix[0])):
@@ -87,7 +87,9 @@ def print_results_html(nombres_des, notas_des, l_des, notas_esp, nombres, \
     resultados.write('<body bgcolor = #F3CA24>' + '\n')
 
     # Imprimir por pantalla los vecinos más cercanos.
-    resultados.write('\n' + '\t'*7 + 'VECINOS MÁS CERCANOS' + '\n'*2)
+    resultados.write('\n' + '\t'*7)
+    resultados.write('</br>' + '\n' + '<h2 align="center">VECINOS MÁS CERCANOS</h2>')
+    resultados.write('</br>' + '\n'*2)
     if sele < 0:
         nearest_form = [['CODEX'] + nombres + ['DISTANCIA'], \
                         ['']*(len(nombres) + 2)] + [['TÚ'] + notas + \
@@ -104,7 +106,10 @@ def print_results_html(nombres_des, notas_des, l_des, notas_esp, nombres, \
     print_table_html(nearest_form, resultados)
 
     # Imprimir por pantalla tabla con datos diversos.
-    resultados.write('\n'*3 + '\t'*7 + 'EJECUCIÓN DEL PROGRAMA' + '\n'*2)
+    resultados.write('\n'*3 + '\t'*7)
+    resultados.write('</br>'*2)
+    resultados.write('</br>' + '\n' + '<h2 align="center">EJECUCIÓN DEL PROGRAMA</h2>')
+    resultados.write('\n'*2)
     aux2 = [['ASIGNATURA', 'NOTA ESPERADA', 'NOTA DESEADA', 'NOTA MEDIA', \
              'CRÉDITOS', 'HORAS'], \
                 ['', '', 'rend = ' + str(rend), '', '', '']]
@@ -115,13 +120,19 @@ def print_results_html(nombres_des, notas_des, l_des, notas_esp, nombres, \
     print_table_html(aux2, resultados)
 
     # Imprimir por pantalla el horario en tabla.
-    resultados.write('\n'*3 + '\t'*7 + 'HORARIO DE ESTUDIO' + '\n\n')
+    resultados.write('\n'*3 + '\t'*7)
+    resultados.write('</br>'*2)    
+    resultados.write('</br>' + '\n' + '<h2 align="center">HORARIO DE ESTUDIO</h2>')
+    resultados.write('\n\n')
     horario = [['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES'], \
                ['', '', '', '', '']] + horario
     print_table_html(horario, resultados)
 
     # Vector con las horas del fin de semana.
-    resultados.write('\n'*3 + '\t'*7 + 'FIN DE SEMANA: ' + '\n'*2)
+    resultados.write('\n'*3 + '\t'*7)
+    resultados.write('</br>'*2)    
+    resultados.write('</br>' + '\n' + '<h2 align="center">FIN DE SEMANA</h2>')
+    resultados.write('\n'*2)
     aux3 = [['ASIGNATURA', 'HORAS'],['', '']]
     for i in range(0, l_des):
         aux3.append([nombres_des[i], finde_des[i]])
@@ -136,6 +147,7 @@ def print_results_html(nombres_des, notas_des, l_des, notas_esp, nombres, \
     for i in range(0, l_des):    
         horas_finde += finde_des[i]
     horas_semana = horas_total - horas_finde
+    resultados.write('</br>'*2)
     aux4 = [['DISTRIBUCIÓN DE HORAS:', ''], ['', ''], ['Semana:', horas_semana], \
             ['Fin de semana:', horas_finde], ['Total:', horas_total]]
     print_table_html(aux4, resultados)
