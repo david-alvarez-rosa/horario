@@ -24,6 +24,7 @@
     });
     
     var saveTimeSave = function () {
+    console.log(23e);    
         for (i = 1; i < 8; i++) {
             for (j = 0; j < 24; j++) {
                 if ($("#" + i + "" + j).css("backgroundColor") == "rgb(135, 206, 235)") {

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	
+  	
+	<title>Proyecto I - Horario</title>
+</head>
+<body>
+<div class="cd-schedule loading">
+	<div class="timeline">
+		<ul>
+			<li><span>09:00</span></li>
+			<li><span>09:30</span></li>
+			<li><span>10:00</span></li>
+			<li><span>10:30</span></li>
+			<li><span>11:00</span></li>
+			<li><span>11:30</span></li>
+			<li><span>12:00</span></li>
+			<li><span>12:30</span></li>
+			<li><span>13:00</span></li>
+			<li><span>13:30</span></li>
+			<li><span>14:00</span></li>
+			<li><span>14:30</span></li>
+			<li><span>15:00</span></li>
+			<li><span>15:30</span></li>
+			<li><span>16:00</span></li>
+			<li><span>16:30</span></li>
+			<li><span>17:00</span></li>
+			<li><span>17:30</span></li>
+			<li><span>18:00</span></li>
+			<li><span>18:30</span></li>
+			<li><span>19:00</span></li>
+			<li><span>19:20</span></li>
+			<li><span>20:00</span></li>
+			<li><span>20:30</span></li>
+			<li><span>21:00</span></li>
+		</ul>
+	</div> <!-- .timeline -->
+
+<!-- TIENES QUE ASIGNAR COLOR A CADA ASIGNATURA, HAY 6 COLORES, CADA UNO LLEVA EL NOMBRE DE event-x (1 <= x <= 6) -->
+<!-- Tecnología del Medio Ambiente y Sostenibilidad: data-event="event-1" -->
+<!-- Mecánica: data-event="event-2" -->
+<!-- Electromagnetismo: data-event="event-3" -->
+<!-- Dinámica de Sistemas: data-event="event-4" -->
+<!-- Economía y Empresa: data-event="event-5" -->
+<!-- ... data-event="event-6" -->
+
+	<div class="events">
+		<ul>
+			<!-- LUNES -->
+			<li class="events-group">
+				<div class="top-info"><span>Lunes</span></div>
+
+				<ul>
+					<li class="single-event" data-start="09:30" data-end="11:30" data-event="event-1">
+						<a href="#0">
+							<em class="event-name">Tecnología del Medio Ambiente y Sostenibilidad </em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="11:00" data-end="12:30" data-event="event-2">
+						<a href="#0">
+							<em class="event-name">Mecánica</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="14:00" data-end="15:15" data-event="event-3">
+						<a href="#0">
+							<em class="event-name">Electromagnetismo</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- MARTES -->
+			<li class="events-group">
+				<div class="top-info"><span>Martes</span></div>
+
+				<ul>
+					<li class="single-event" data-start="16:00" data-end="18:30"  data-event="event-3">
+						<a href="#0">
+							<em class="event-name">Electromagnetismo</em>
+						</a>
+					</li>
+
+
+					<li class="single-event" data-start="19:00" data-end="20:30" data-event="event-5">
+						<a href="#0">
+							<em class="event-name">Economía y Empresa</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="9:00" data-end="10:30" data-event="event-4">
+						<a href="#0">
+							<em class="event-name">Dinámica de Sistemas</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- MIÉRCOLES -->
+			<li class="events-group">
+				<div class="top-info"><span>Miércoles</span></div>
+
+				<ul>
+					<li class="single-event" data-start="09:00" data-end="10:15" data-event="event-4">
+						<a href="#0">
+							<em class="event-name">Dinámica de Sistemas</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- JUEVES -->
+			<li class="events-group">
+				<div class="top-info"><span>Jueves</span></div>
+
+				<ul>
+					<li class="single-event" data-start="09:30" data-end="10:30" data-event="event-2">
+						<a href="#0">
+							<em class="event-name">Mecánica</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="12:00" data-end="13:45" data-event="event-3">
+						<a href="#0">
+							<em class="event-name">Electromagnetismo</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- VIERNES -->
+			<li class="events-group">
+				<div class="top-info"><span>Viernes</span></div>
+
+				<ul>
+					<li class="single-event" data-start="10:00" data-end="12:00" data-event="event-3">
+						<a href="#0">
+							<em class="event-name">Electromagnetismo</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="12:30" data-end="14:00" data-event="event-2">
+						<a href="#0">
+							<em class="event-name">Mecánica</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="15:45" data-end="16:45" data-event="event-1">
+						<a href="#0">
+							<em class="event-name">Tecnología del Medio Ambiente y Sostenibilidad</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div class="event-modal">
+		<header class="header">
+			<div class="content">
+				<span class="event-date"></span>
+				<h3 class="event-name"></h3>
+			</div>
+
+			<div class="header-bg"></div>
+		</header>
+
+		<div class="body">
+			<div class="event-info"></div>
+			<div class="body-bg"></div>
+		</div>
+
+		<a href="#0" class="close">Close</a>
+	</div>
+
+	<div class="cover-layer"></div>
+</div> <!-- .cd-schedule -->
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<p class="title2">Estudiantes con notas más cercanas a las tuyas</p>
+    <table>
+      <tr>
+        <td></td>
+        
+        <td><center>Selectividad</center></td>
+        
+        <td><center>Álgebra Lineal</center></td>
+        
+        <td><center>Cálculo I</center></td>
+        
+        <td><center>Fundamentos de Informática</center></td>
+        
+        <td><center>Química I</center></td>
+        
+        <td><center>Mecánica Fundamental</center></td>
+        
+        <td><center>Termodinámica Fundamental</center></td>
+        
+        <td><center>Química II</center></td>
+        
+        <td><center>Cálculo II</center></td>
+        
+        <td><center>Expresión G.</center></td>
+        
+        <td><center>Geometría</center></td>
+      </tr>
+        
+        <tr>
+        
+        <td><center>1</center></td>
+        
+        <td><center>11.2</center></td>
+        
+        <td><center>2.4</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+      </tr>
+        
+        <tr>
+        
+        <td><center>2</center></td>
+        
+        <td><center>11.0</center></td>
+        
+        <td><center>2.4</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>4.8</center></td>
+        
+        <td><center>4.9</center></td>
+        
+        <td><center>5.9</center></td>
+        
+        <td><center>4.1</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+      </tr>
+        
+        <tr>
+        
+        <td><center>3</center></td>
+        
+        <td><center>11.1</center></td>
+        
+        <td><center>3.1</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>5.3</center></td>
+        
+        <td><center>4.8</center></td>
+        
+        <td><center>5.4</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+      </tr>
+        
+        <tr>
+        
+        <td><center>4</center></td>
+        
+        <td><center>11.3</center></td>
+        
+        <td><center>2.7</center></td>
+        
+        <td><center>5.7</center></td>
+        
+        <td><center>4.9</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>5.6</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+      </tr>
+        
+        <tr>
+        
+        <td><center>5</center></td>
+        
+        <td><center>11.5</center></td>
+        
+        <td><center>2.8</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>5.0</center></td>
+        
+        <td><center>4.4</center></td>
+        
+        <td><center>6.1</center></td>
+        
+        <td><center>4.2</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+      </tr>
+        
+      </tr>
+      <tr>
+        <td><center>Tú</center></td>
+        
+        <td><center>12</center></td>
+        
+        <td><center>2</center></td>
+        
+        <td><center>5</center></td>
+        
+        <td><center>5</center></td>
+        
+        <td><center>5</center></td>
+        
+        <td><center>5</center></td>
+        
+        <td><center>4.3</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>4.6</center></td>
+        
+        <td><center>5.8</center></td>
+        
+        <td><center>3.3</center></td>
+        
+      </tr>
+    </table>
+  </div>
+
+<br><br>
+<p class="title2">Notas predichas</p>
+	<table>
+      <tr>
+
+        <td><center>Electromagnetismo</center></td>
+        
+        <td><center>Mecánica</center></td>
+        
+        <td><center>Dinámica de Sistemas</center></td>
+        
+        <td><center>Economía y Empresa</center></td>
+        
+        <td><center>Proyecto I</center></td>
+        
+      </tr>
+      <tr>
+
+        <td><center>8.5</center></td>
+        
+        <td><center>7.4</center></td>
+        
+        <td><center>6.5</center></td>
+        
+        <td><center>4.3</center></td>
+        
+        <td><center>9</center></td>
+        
+      </tr>
+    </table>
+
+<br><br><br><br><br><br><br>
+
+<script src="js/modernizr.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+</body>
+</html>
