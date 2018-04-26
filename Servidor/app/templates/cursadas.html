@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proyecto I - Horario</title>
+    <p class = title1>Smart_hours.</p>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel = "stylesheet" type = "text/css" href = "../static/style.css" />
+  </head>
+
+
+</head>
+<!-- HEADER -->
+<body bgcolor = #F3CA24>
+  
+  <!-- APARTADO HORARIO -->
+  <link rel="stylesheet" type="text/css" href="../static/DPS.css">
+  <p class = observations2> Para finalizar, introduce el máximo de datos posibles.</p>
+  
+  <div style="background-color:#F3CA24;">
+    <form action="/resultados" method="post">
+      <p class = observations>Escoge el rendimiento que desees.</p>
+      <div class="wrapper">
+      <select name="rend">
+  	<option value="Min" >Mínimo </option>
+  	<option value="Med">Medio</option>
+  	<option value="Max" >Máximo</option>
+      </select>
+      </div>
+
+      <table align="center">
+	<tr><td>Nota de Selectividad:</td><td> <input id="number" type="number" name="input_sele" value = -1></td></tr>
+	<tr><td>Álgebra Lineal:</td><td> <input id="number" type="number" name="input_algebra"value = -1></td></tr>
+	<tr><td>Cálculo I:</td><td> <input id="number" type="number" name="input_calcul1"value = -1></td></tr>
+	<tr><td>Fundamentos de Informática:</td><td> <input id="number" type="number" name="input_info1"value = -1></td></tr>
+	<tr><td>Mecánica Fundamental:</td><td> <input id="number" type="number" name="input_MecFon"value = -1></td></tr>
+	<tr><td>Química I:</td><td> <input id="number" type="number" name="input_quim1"value = -1></td></tr>
+	<tr><td>Cálculo II</td><td> <input id="number" type="number" name="input_calcul2"value = -1></td></tr>
+	<tr><td>Expresión Gráfica</td><td> <input id="number" type="number" name="input_expre"value = -1></td></tr>
+	<tr><td>Geometría</td><td> <input id="number" type="number" name="input_geo"value = -1></td></tr>	
+	<tr><td>Química II:</td><td> <input id="number" type="number" name="input_quim2"value = -1></td></tr>
+	<tr><td>Termodinámica Fundamental:</td><td> <input id="number" type="number" name="input_termo"value = -1></td></tr>
+      </table>
+
+      
+  <div class="wrapper">
+    <button type="submit"> GENERA TU HORARIO! </button>
+  </div>
+
+  </form>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="../static/jquery.min.js"></script>
+  <button onclick="javascript:history.go(-1)";>Go Back</button>
+</body>
+</html>
