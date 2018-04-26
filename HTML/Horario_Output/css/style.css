@@ -405,6 +405,16 @@ Main Components
   background: #5CE3A2;
 }
 
+.cd-schedule .single-event[data-event="event-7"],
+.cd-schedule [data-event="event-7"] .header-bg {
+  background: #5CD5E3;
+}
+
+.cd-schedule .single-event[data-event="event-8"],
+.cd-schedule [data-event="event-8"] .header-bg {
+  background: #E35CAE;
+}
+
 .cd-schedule .event-modal {
   position: fixed;
   z-index: 3;
