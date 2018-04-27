@@ -1,6 +1,5 @@
-from flask import render_template, g
+from flask import render_template, request
 from app import app
-from flask import request
 from app.scripts import main
 
 
@@ -8,7 +7,7 @@ from app.scripts import main
 @app.route('/index')
 @app.route('/horario')
 def horario():
-    return render_template('horario.html', title = 'Home')
+    return render_template('horario2.html', title = 'Home')
 
 
 @app.route('/deseadas')
@@ -44,9 +43,12 @@ def resultados():
     termo = request.form['input_termo']
 
     # Convertir notas a lista.
-    notas = [float(sele), float(algebra), float(calcul1), float(info1),
-             float(mec_fon), float(quim1), float(calc2), float(expre),
-             float(geo), float(quim2), float(termo)]
+    notas = [sele, algebra, calcul1, info1, mec_fon, quim1, calc2, expre,
+             geo, quim2, termo]
+    for i in range(0, len(notas)):
+        if notas[i] == '':
+            notas[i] = -1
+        notas[i] = float(notas[i])
 
     # Leer rendimiento como string.
     rend = request.form['rend']
@@ -63,8 +65,14 @@ def resultados():
         nombres_des.append(nombre)
             
     # Para probrarlo.
-    notas_des = [5]*len(nombres_des)
+    notas_des = [7.5]*len(nombres_des)
     horario = [
+        [-1, -1, -1, -1, -1],
+        [-1, -1, -1, -1, -1],
+        [-2, -2, -2, -2, -1],
+        [-1, -2, -1, -2, -2],
+        [-2, -2, -1, -1, -2],
+        [-2, -2, -2, -2, -2],
         [-1, -2, -1, -1, -1],
         [-2, -2, -2, -2, -2],
         [-2, -1, -2, -2, -1],
@@ -72,34 +80,16 @@ def resultados():
         [-2, -1, -1, -1, -2],
         [-2, -2, -2, -2, -2],
         [-1, -2, -1, -1, -1],
-        [-2, -2, -2, -2, -2],
-        [-2, -1, -2, -2, -1],
-        [-1, -1, -1, -2, -1],
-        [-2, -1, -1, -1, -2],
-        [-2, -2, -2, -2, -2],
-        [-1, -2, -1, -1, -1],
-        [-2, -2, -2, -2, -2],
-        [-2, -1, -2, -2, -1]
+        [-1, -1, -1, -1, -1],
+        [-1, -1, -1, -1, -1]
     ]
 
     # Ejecutar el programa.
-    main.main(notas, rend , nombres_des, notas_des, horario)
+    horario, hora_ini, nombres_hor = main.main(notas, rend, nombres_des,
+                                               notas_des, horario)
 
-    return render_template('resultados.html')
+    dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']
     
-
-    # en el return tornem les variables per separat, però es pot tornar un dict
-    # amb els valors a tornar {'id':'valor'}
-    # return render_template('notes.html',
-    #                        title = 'Notes',
-    #                        sele = float(sele),
-    #                        algebra = float(algebra),
-    #                        calcul1=float(calcul1),
-    #                        info1 = float(info1),
-    #                        quim1 = float(quim1),
-    #                        mec_fon = float(mec_fon),
-    #                        quim2 = float(quim2),
-    #                        calc2 = float(calc2),
-    #                        expre = float(expre),
-    #                        geo=float(geo),
-    #                        rend = str(rend))
+    return render_template('resultados.html', horario = horario, dias = dias,
+                           l_horario = len(horario), nombres = nombres_hor,
+                           ini = hora_ini)

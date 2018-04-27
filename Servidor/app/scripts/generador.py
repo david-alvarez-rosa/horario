@@ -1,3 +1,33 @@
+# Quitar filas vacías del principio o final.
+def format_horario(horario_inp):
+    # Encontrar comienzo de filas no vacías.
+    ini = 0
+    finished = False
+    while ini < len(horario_inp):
+        for j in range(0, len(horario_inp[0])):
+            if horario_inp[ini][j] >= 0:
+                finished = True
+        if finished: break
+        ini += 1
+
+    # Encontrar fin de filas no vacías
+    fin = len(horario_inp) - 1
+    finished = False
+    while fin >= 0:
+        for j in range(0, len(horario_inp[0])):
+            if horario_inp[fin][j] >= 0:
+                finished = True
+        if finished: break
+        fin -= 1
+
+    # Crear vector formateado.
+    horario = []
+    for i in range(ini, fin):
+        horario.append(horario_inp[i])
+
+    return horario, ini
+
+
 # Función de comparación para el ordenamiento por selección.
 def comp(a, b):
     if a%2 == 0:
@@ -131,19 +161,29 @@ def generator_main(horas, nombres_des, horario):
     # Creo copia del vector de horas y de nombres, para no sobreescribirlo.
     hours = list(horas)
     nombres = list(nombres_des)
-
+    
+    # Ejecución del generador.
     sort(hours, nombres, [0]*len(hours))
     finde = update_finde(hours)
     sort(hours, nombres, finde)
     distribute(hours, horario, finde)
 
+    # Quitar filas vacías del principio o final.
+    horario, ini = format_horario(horario)
+
+    horario_des = []
+    for i in range(0, len(horario)):
+        horario_des.append([])
+        for j in range(0, len(horario[0])):
+            horario_des[i].append(horario[i][j])
+
     # Convirtiendo el horario codificado, a horario con nombres.
     for i in range(0, len(horario)):
         for j in range(0, 5):
             k = horario[i][j]
-            if k >= 0: horario[i][j] = nombres[k]
-            elif k == -1: horario[i][j] = '-----------------'
-            else: horario[i][j] = ''
+            if k >= 0: horario_des[i][j] = nombres[k]
+            elif k == -1: horario_des[i][j] = '-----------------'
+            else: horario_des[i][j] = ''
 
     # Reordenando el vector finde, como nombres_des.
     finde_des = []
@@ -151,4 +191,4 @@ def generator_main(horas, nombres_des, horario):
         pos = nombres.index(nombres_des[i])
         finde_des.append(finde[pos])
 
-    return finde_des;
+    return finde_des, nombres, horario_des, horario, ini

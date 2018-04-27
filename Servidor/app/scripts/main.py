@@ -1,17 +1,18 @@
 import pandas as pd
+from app.scripts import entrada as ent
 from app.scripts import predictor as pr
 from app.scripts import horas as hr
 from app.scripts import generador as gn
 from app.scripts import rendimiento as rd
-from app.scripts import flujos as flu
+from app.scripts import terminal as ter
 
 
 def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     # Convertir input de la web en input válido para el programa.
     sele, l_curs, l_des, nombres_des, notas_des, codas, nombres, notas, k, \
-        horario, rend, notas_curs, l_horario = \
-        flu.convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario)
-
+        horario, rend, notas_curs, l_horario, hora_ini = \
+        ent.convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario)
+    
     # Predecir notas.
     grades, nearest_form, diff = pr.predictor_main(codas, notas, k, l_curs, sele)
 
@@ -43,10 +44,14 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     horas = hr.hours_main(notas_des, notas_esp, notas_med, l_des, creds)
 
     # Generar horario.
-    finde_des = gn.generator_main(horas, nombres_des, horario)
+    finde_des, nombres_hor, horario_des, horario, ini = gn.generator_main(horas, nombres_des, horario)
+    hora_ini += ini
 
-    # Devolver resultados. Falta.
-    # Generar output.
-    flu.print_results_html(nombres_des, notas_des, l_des, notas_esp, nombres, \
-                      nearest_form, notas, diff, horas, horario, finde_des, \
-                      sele, notas_med, creds, rend)
+
+    # Imprimir resultados por terminal.
+    ter.print_results(nombres_des, notas_des, l_des, notas_esp, nombres, \
+               nearest_form, notas, diff, horas, horario_des, finde_des, \
+               sele, notas_med, creds, rend)
+
+    
+    return horario, hora_ini, nombres_hor
