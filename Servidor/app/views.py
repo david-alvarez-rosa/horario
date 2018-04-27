@@ -17,13 +17,23 @@ def deseadas():
 
 @app.route('/cursadas', methods = ['POST'])
 def cursadas():
+    # Leer rendimiento.
+    rend = request.form['rend']
+    # Guardarlo en fichero.
+    rend_file = open('app/tmp/rend_file.txt', 'w')
+    rend_file.write(rend)
+    
     # Leer nombres de las asignaturas deseadas para hacer horario.
-    nombres_des = request.form.getlist("check_list[]")
+    nombres_des = request.form.getlist('check_list[]')
     # Guardarlos en un fichero por filas.
     nombres_des_file = open('app/tmp/nombres_des_file.txt', 'w')
     for i in range(0, len(nombres_des)):
         nombres_des_file.write(nombres_des[i] + '\n')
-        
+
+    if rend == 'man':
+        return render_template('cursadas_man.html', nombres_des = nombres_des,
+                               l_des = len(nombres_des), title='cursadas')
+
     return render_template('cursadas.html', title='cursadas')
 
 
@@ -92,4 +102,4 @@ def resultados():
     
     return render_template('resultados.html', horario = horario, dias = dias,
                            l_horario = len(horario), nombres = nombres_hor,
-                           ini = hora_ini)
+                           ini = hora_ini, title = 'resultados')

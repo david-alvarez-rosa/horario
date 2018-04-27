@@ -16,11 +16,21 @@
 <body bgcolor = #F3CA24>
 
   <link rel="stylesheet" type="text/css" href="../static/css/DPS.css">
-  <p class = observations2> Porfavor, introduce las asignaturas que estés matriculado.</p>
+  <p class = observations2> Por favor, introduce las asignaturas que estés matriculado.</p>
 
   <div id="myDIV" class="header">
-    <p class="title2" style="margin:5px">Asignaturas matriculadas</p>
+    <p class="title2" style="margin:5px">Asignaturas deseadas</p>
     <form action="/cursadas" method="post">
+      <p class = observations>Escoge el rendimiento que desees.</p>
+      <div class="wrapper">
+	<select name="rend">
+  	  <option value="min" >Mínimo </option>
+  	  <option value="med">Medio</option>
+  	  <option value="max" >Máximo</option>
+  	  <option value="man" >Manual</option>
+	</select>
+      </div>
+
       <br>
       <input type="checkbox" name="check_list[]" value="Álgebra Lineal">Álgebra Lineal
       <br>
