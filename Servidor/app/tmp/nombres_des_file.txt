@@ -1,6 +1,0 @@
-Ecuaciones Diferenciales
-Electromagnetismo
-Métodos Numéricos
-Informática
-Materiales
-Mecánica

@@ -7,11 +7,20 @@ from app.scripts import main
 @app.route('/index')
 @app.route('/horario')
 def horario():
-    return render_template('horario2.html', title = 'Home')
+    return render_template('horario.html', title = 'Home')
 
 
 @app.route('/deseadas')
 def deseadas():
+    # Leer horas ocupadas del horario.
+    horario = request.form.getlist('horario')
+    # Guardar el horario en fichero.
+    horario_file = open('app/tmp/horario_file.txt', 'w')
+    for i in range(0, len(horario)):
+        for j in range(0, len(horario[0])):
+            horario_file.write(str(horario[i][j]))
+        horario_file.write('\n')
+    
     return render_template('deseadas.html', title='deseadas')
 
 
@@ -60,9 +69,12 @@ def resultados():
             notas[i] = -1
         notas[i] = float(notas[i])
 
-    # Leer rendimiento como string.
-    rend = request.form['rend']
-    rend = str(rend)
+    # Leer rendimiento desde fichero.
+    rend_file = open('app/tmp/rend_file.txt', 'r')
+    rend = rend_file.readlines()
+    rend = str(rend[0])
+
+    print('rendimiento: ', rend)
 
     # Leer nombres asignaturas deseadas desde fichero.
     nombres_des_file = open('app/tmp/nombres_des_file.txt', 'r')

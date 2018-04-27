@@ -143,7 +143,6 @@ ul li.checked::before {
 }
 input {
   border: none;
-  width: 3%;
   padding: 10px;
   float: left;
   font-size: 16px;

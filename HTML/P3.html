@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Proyecto I - Horario</title>
-<p class = title1>Smart_hours.</p>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel = "stylesheet" type = "text/css" href = "style.css" />
- </head>
+  <head>
+    <title>Proyecto I - Horario</title>
+    <p class = title1>Smart_hours.</p>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel = "stylesheet" type = "text/css" href = "style.css" />
+  </head>
 
 </head>
 <!-- HEADER -->
 <body bgcolor = #F3CA24>
-<!-- APARTADO HORARIO -->
-<p class = observations2> Para finalizar, introduce el máximo de datos posibles.</p>
+  <!-- APARTADO HORARIO -->
+  <p class = observations2> Para finalizar, introduce el máximo de datos posibles.</p>
   
-<div style="background-color:#F3CA24;">
+  <div style="background-color:#F3CA24;">
     <p class = observations>Escoge el rendimiento que desees.</p>
     <div class=wrapper>
-    	<select>
-  			<option value="Max">Máximo (+10% notas)</option>
-  			<option value="Medio">Medio (Mantenimiento notas + Aprobado)</option>
-  			<option value="Min">Mínimo (Aprobado)</option>  		
-		</select>
-	</div>
-	<table align="center">
-     	<tr><td>Nota de Selectividad:</td><td><input size="10" onkeypress="return justNumbers(event);" name="Sele" id="Sele"></td></tr>
-  		<tr><td>Álgebra Lineal:         </td><td><input size="10" onkeypress="return justNumbers(event);" name="AL" id="AL"></td></tr>
-  		<tr><td>Cálculo I:                </td><td><input size="10" onkeypress="return justNumbers(event);" name="C1" id="C1"></td></tr>
-  		<tr><td>Fundamentos de Informática: </td><td><input size="10" onkeypress="return justNumbers(event);" name="FI" id="FI"></td></tr>
-  		<tr><td>Química I:               </td><td><input size="10" onkeypress="return justNumbers(event);" name="Q1" id="Q1"></td></tr>
-  		<tr><td>Mecánica Fundamental:     </td><td><input size="10" onkeypress="return justNumbers(event);" name="MF" id="MF"></td></tr>
-  		<tr><td>Termodinámica Fundamental:</td><td><input size="10" onkeypress="return justNumbers(event);" name="TF" id="TF"></td></tr>
-  		<tr><td>Química II:             </td><td><input size="10" onkeypress="return justNumbers(event);" name="Q2" id="Q2"></td></tr>
-  		<tr><td>Cálculo II:               </td><td><input size="10" onkeypress="return justNumbers(event);" name="C2" id="C2"></td></tr>
-  		<tr><td>Expresión Gráfica:       </td><td><input size="10" onkeypress="return justNumbers(event);" name="EG" id="EG"></td></tr>
-  		<tr><td>Geometría:               </td><td><input size="10" onkeypress="return justNumbers(event);" name="GEO" id="GEO"></td></tr>
-  	</table>
+      <select>
+  	<option value="Max">Máximo (+10% notas)</option>
+  	<option value="Medio">Medio (Mantenimiento notas + Aprobado)</option>
+  	<option value="Min">Mínimo (Aprobado)</option>  		
+      </select>
+    </div>
+    <table align="center">
+      <tr><td>Nota de Selectividad:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_sele"></td></tr>
+      <tr><td>Álgebra Lineal:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_algebra"></td></tr>
+      <tr><td>Cálculo I:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_calcul1"></td></tr>
+      <tr><td>Fundamentos de Informática:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_info1"></td></tr>
+      <tr><td>Mecánica Fundamental:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_MecFon"></td></tr>
+      <tr><td>Química I:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_quim1"></td></tr>
+      <tr><td>Cálculo II:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_calcul2"></td></tr>
+      <tr><td>Expresión Gráfica:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_expre"></td></tr>
+      <tr><td>Geometría:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_geo"></td></tr>	
+      <tr><td>Química II:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_quim2"></td></tr>
+      <tr><td>Termodinámica Fundamental:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_termo"></td></tr>
+    </table>
 
   </div>
-<div class="wrapper"> <button type=button>GENERA TU HORARIO!</button> </div>
+  <div class="wrapper"> <button type=button>GENERA TU HORARIO!</button> </div>
 
 
-<script src=lista_asig.js></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src=jquery.min.js></script>
-<script src=horario.js></script>
-<script src=numbers.js></script>
+  <script src=lista_asig.js></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src=jquery.min.js></script>
+  <script src=horario.js></script>
+  <script src=numbers.js></script>
 </body>
 </html>
