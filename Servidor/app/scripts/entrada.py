@@ -1,3 +1,4 @@
+from flask import request
 from app.scripts import codificador as cd
 
 
@@ -76,3 +77,28 @@ def convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario):
     # Retornar todo lo necesario.
     return sele, l_curs, l_des, nombres_des, notas_des, codas, nombres, notas, \
         k, horario, rend, notas_curs, l_horario, hora_ini
+
+
+# Leer notas cursadas desde la web.
+def leer_cursadas():
+    sele = request.form['input_sele']
+    algebra = request.form['input_algebra']
+    calcul1 = request.form['input_calcul1']
+    info1 = request.form['input_info1']
+    mec_fon = request.form['input_MecFon']
+    quim1 = request.form['input_quim1']
+    calc2 = request.form['input_calcul2']    
+    expre = request.form['input_expre']
+    geo = request.form['input_geo']
+    quim2 = request.form['input_quim2']
+    termo = request.form['input_termo']
+
+    # Convertir notas a lista.
+    notas_curs_todas = [sele, algebra, calcul1, info1, mec_fon, quim1, calc2, expre,
+                        geo, quim2, termo]
+    for i in range(0, len(notas_curs_todas)):
+        if notas_curs_todas[i] == '':
+            notas_curs_todas[i] = -1
+        notas_curs_todas[i] = float(notas_curs_todas[i])
+
+    return notas_curs_todas

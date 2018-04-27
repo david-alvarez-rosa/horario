@@ -1,5 +1,6 @@
 import pandas as pd
 from app.scripts import entrada as ent
+from app.scripts import salida as sal
 from app.scripts import predictor as pr
 from app.scripts import horas as hr
 from app.scripts import generador as gn
@@ -47,11 +48,12 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     finde_des, nombres_hor, horario_des, horario, ini = gn.generator_main(horas, nombres_des, horario)
     hora_ini += ini
 
-
     # Imprimir resultados por terminal.
     ter.print_results(nombres_des, notas_des, l_des, notas_esp, nombres, \
                nearest_form, notas, diff, horas, horario_des, finde_des, \
                sele, notas_med, creds, rend)
 
+    # Crear matriz de vecinos más cercanos.
+    vecinos = sal.vecinos_matrix(nearest_form, nombres, notas, sele, diff)
     
-    return horario, hora_ini, nombres_hor
+    return horario, hora_ini, nombres_hor, vecinos

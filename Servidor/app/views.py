@@ -1,6 +1,6 @@
 from flask import render_template, request
 from app import app
-from app.scripts import main
+from app.scripts import entrada, main
 
 
 @app.route('/')
@@ -10,7 +10,7 @@ def horario():
     return render_template('horario.html', title = 'Home')
 
 
-@app.route('/deseadas')
+@app.route('/deseadas', methods = ['POST'])
 def deseadas():
     # Leer horas ocupadas del horario.
     horario = request.form.getlist('horario')
@@ -43,38 +43,18 @@ def cursadas():
         return render_template('cursadas_man.html', nombres_des = nombres_des,
                                l_des = len(nombres_des), title='cursadas')
 
-    return render_template('cursadas.html', title='cursadas')
+    return render_template('cursadas.html', title = 'cursadas')
 
 
 @app.route('/resultados', methods = ['POST'])
 def resultados():
-    # Notas cursadas.
-    sele = request.form['input_sele']
-    algebra = request.form['input_algebra']
-    calcul1 = request.form['input_calcul1']
-    info1 = request.form['input_info1']
-    mec_fon = request.form['input_MecFon']
-    quim1 = request.form['input_quim1']
-    calc2 = request.form['input_calcul2']    
-    expre = request.form['input_expre']
-    geo = request.form['input_geo']
-    quim2 = request.form['input_quim2']
-    termo = request.form['input_termo']
-
-    # Convertir notas a lista.
-    notas = [sele, algebra, calcul1, info1, mec_fon, quim1, calc2, expre,
-             geo, quim2, termo]
-    for i in range(0, len(notas)):
-        if notas[i] == '':
-            notas[i] = -1
-        notas[i] = float(notas[i])
+    # Leer notas cursadas desde la web.
+    notas_curs_todas = entrada.leer_cursadas()
 
     # Leer rendimiento desde fichero.
     rend_file = open('app/tmp/rend_file.txt', 'r')
     rend = rend_file.readlines()
     rend = str(rend[0])
-
-    print('rendimiento: ', rend)
 
     # Leer nombres asignaturas deseadas desde fichero.
     nombres_des_file = open('app/tmp/nombres_des_file.txt', 'r')
@@ -85,33 +65,37 @@ def resultados():
         nombre = lines[i]
         nombre = nombre[0:len(nombre) - 1]
         nombres_des.append(nombre)
+
+    # Leer notas deseadas si el rendimiento es manual.
+    notas_des = []
+    if rend == 'man':
+        for i in range(0, len(nombres_des)):
+            nota = request.form[nombres_des[i]]
+            notas_des.append(float(nota))
+    else: notas_des = [20]*len(nombres_des)
+
+    # Leer horario desde fichero.
+    horario_file = open('app/tmp/horario_file.txt', 'r')
+    lines = horario_file.readlines()
+    horario = []
+    for i in range(0, 15):
+        aux = [-2]*5
+        horario.append(aux)
+    for k in range(0, len(lines) - 1):
+        ia = int(lines[k][1:3]) - 9
+        ja = int(lines[k][0]) - 1
+        horario[ia][ja] = -1
             
-    # Para probrarlo.
-    notas_des = [7.5]*len(nombres_des)
-    horario = [
-        [-1, -1, -1, -1, -1],
-        [-1, -1, -1, -1, -1],
-        [-2, -2, -2, -2, -1],
-        [-1, -2, -1, -2, -2],
-        [-2, -2, -1, -1, -2],
-        [-2, -2, -2, -2, -2],
-        [-1, -2, -1, -1, -1],
-        [-2, -2, -2, -2, -2],
-        [-2, -1, -2, -2, -1],
-        [-1, -1, -1, -2, -1],
-        [-2, -1, -1, -1, -2],
-        [-2, -2, -2, -2, -2],
-        [-1, -2, -1, -1, -1],
-        [-1, -1, -1, -1, -1],
-        [-1, -1, -1, -1, -1]
-    ]
-
     # Ejecutar el programa.
-    horario, hora_ini, nombres_hor = main.main(notas, rend, nombres_des,
-                                               notas_des, horario)
-
+    horario, hora_ini, nombres_hor, vecinos = main.main(notas_curs_todas, rend,
+                                                        nombres_des, notas_des,
+                                                        horario)
+    
     dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']
+    l_vecinos_i = len(vecinos)
+    l_vecinos_j = len(vecinos[0])
     
     return render_template('resultados.html', horario = horario, dias = dias,
                            l_horario = len(horario), nombres = nombres_hor,
-                           ini = hora_ini, title = 'resultados')
+                           ini = hora_ini, title = 'resultados', vecinos = vecinos,
+                           l_vecinos_i = l_vecinos_i, l_vecinos_j = l_vecinos_j)
