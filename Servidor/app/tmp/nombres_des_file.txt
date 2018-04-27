@@ -1,5 +1,6 @@
-Mecánica Fundamental
-Tecnología de la Luz
-Tecnologías Digitales para la Comunicación de los Proyectos
-Fusión Nuclear. Iter
-Logística Control de Flotas y Sig
+Ecuaciones Diferenciales
+Electromagnetismo
+Métodos Numéricos
+Informática
+Materiales
+Mecánica
