@@ -22,11 +22,9 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
         print('\n Ningún alumno compatible! \n')
         return
 
-    # Reordenar las notas como las introdujo el usuario.
-    notas_esp = []
-    for i in range(0, l_des):
-        pos = nombres.index(nombres_des[i])
-        notas_esp.append(grades[pos])
+    # Reordenar las notas esperadas como las introdujo el usuario y redondear
+    # a dos decimales.
+    notas_esp = sal.format_notas_esp(nombres_des, l_des, grades, nombres)
 
     # Crear vector de medias y de creditos para asignaturas deseadas.
     df = pd.read_csv('app/databases/asignaturas.csv')
@@ -55,5 +53,6 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
 
     # Crear matriz de vecinos más cercanos.
     vecinos = sal.vecinos_matrix(nearest_form, nombres, notas, sele, diff)
-    
-    return horario, hora_ini, nombres_hor, vecinos
+
+    # Retornar todo lo necesario para generar el output.
+    return horario, hora_ini, nombres_hor, vecinos, notas_esp, nombres_des

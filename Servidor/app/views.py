@@ -87,15 +87,18 @@ def resultados():
         horario[ia][ja] = -1
             
     # Ejecutar el programa.
-    horario, hora_ini, nombres_hor, vecinos = main.main(notas_curs_todas, rend,
-                                                        nombres_des, notas_des,
-                                                        horario)
+    horario, hora_ini, nombres_hor, vecinos, notas_esp, \
+        nombres_des = main.main(notas_curs_todas, rend, nombres_des, \
+                                notas_des, horario)
     
     dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']
     l_vecinos_i = len(vecinos)
     l_vecinos_j = len(vecinos[0])
+    l_des = len(notas_des)
     
-    return render_template('resultados.html', horario = horario, dias = dias,
-                           l_horario = len(horario), nombres = nombres_hor,
-                           ini = hora_ini, title = 'resultados', vecinos = vecinos,
-                           l_vecinos_i = l_vecinos_i, l_vecinos_j = l_vecinos_j)
+    return render_template('resultados.html', horario = horario, dias = dias, \
+                           l_horario = len(horario), nombres = nombres_hor, \
+                           ini = hora_ini, title = 'resultados', \
+                           vecinos = vecinos, l_vecinos_i = l_vecinos_i, \
+                           l_vecinos_j = l_vecinos_j, notas_esp = notas_esp, \
+                           nombres_des = nombres_des, l_des = l_des)
