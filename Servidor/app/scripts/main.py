@@ -43,7 +43,8 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     horas = hr.hours_main(notas_des, notas_esp, notas_med, l_des, creds)
 
     # Generar horario.
-    finde_des, nombres_hor, horario_des, horario, ini = gn.generator_main(horas, nombres_des, horario)
+    finde_des, nombres_hor, horario_des, \
+        horario, ini = gn.generator_main(horas, nombres_des, horario)
     hora_ini += ini
 
     # Imprimir resultados por terminal.
@@ -52,7 +53,12 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
                sele, notas_med, creds, rend)
 
     # Crear matriz de vecinos más cercanos.
-    vecinos = sal.vecinos_matrix(nearest_form, nombres, notas, sele, diff)
+    vecinos_curs, vecinos_des = sal.vecinos_matrix(nearest_form, nombres, \
+                                                   notas, sele, diff)
+
+    # Crear matriz de fin de semana.
+    finde = sal.format_finde_des(finde_des, nombres_des, l_des)
 
     # Retornar todo lo necesario para generar el output.
-    return horario, hora_ini, nombres_hor, vecinos, notas_esp, nombres_des
+    return horario, hora_ini, nombres_hor, vecinos_curs, vecinos_des, \
+        notas_esp, nombres_des, finde

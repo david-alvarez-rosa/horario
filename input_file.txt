@@ -6,7 +6,7 @@
   - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
   - Nota obtenida (-1 si no se quiere introducir)
 * Número de asignaturas para hacer el horario.
-* Rendimiento: 0 (mínimo), 1 (medio), 2 (máximo), -1 (manual)
+* Rendimiento: min (mínimo), med (medio), max (máximo), man (manual).
 * Asigaturas para hacer el horario:
   - Nombre completo asignatura (como aparece en 'Ficheros/asignaturas.csv')
   - Nota deseada (no necesaria si se ha elegido rendimiento).
@@ -17,34 +17,34 @@
 
 
 Selectividad
--1
+14
 
 
 10
 
 Álgebra Lineal
--1
+10
 Cálculo I
--1
+10
 Mecánica Fundamental
--1
+10
 Química I
--1
+10
 Fundamentos de Informática
--1
+10
 Cálculo II
--1
+10
 Geometría
--1
+10
 Termodinámica Fundamental
--1
+10
 Química II
--1
+10
 Expresión Gráfica
--1
+10
 
 
--1
+max
 
 
 6

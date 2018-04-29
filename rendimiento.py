@@ -11,22 +11,31 @@ def mean(notas_curs, l_curs):
 # Convierte rendimiento a notas deseadas.
 def rend_main(rend, l_des, notas_des, notas_curs, l_curs):
     # Rendimiento mínimo.
-    if rend == 0:
+    if rend == 'min':
         notas_des = [-5]*l_des
         return notas_des
+    
+    # Sin rendimiento (notas deseadas introducidas manualmente).
+    if rend == 'man':
+        return notas_des
+
     media = mean(notas_curs, l_curs)
     # Rendimiento medio.
-    if rend == 1:
+    if rend == 'med':
         if l_curs == 0: notas_des = [11]*l_des
-        else:
+        elif media >= 5:
             notas_des = [-media]*l_des
-        return notas_des
-    # Rendimiento máximo.
-    if rend == 2:
-        if l_curs == 0: notas_des = [11]*l_des
         else:
-            notas_des = [-media*1.1]*l_des
+            notas_des = [-5]*l_des
         return notas_des
-    # Sin rendimiento (notas deseadas introducidas manualmente).
-    if rend == -1:
+    
+    # Rendimiento máximo.
+    if rend == 'max':
+        if l_curs == 0: notas_des = [11]*l_des
+        elif media*1.1 >= 5 and media*1.1 <= 10:
+            notas_des = [-media*1.1]*l_des
+        elif media*1.1 >= 5:
+            notas_des = [-10]*l_des
+        else:
+            notas_des = [5*1.1]*l_des
         return notas_des

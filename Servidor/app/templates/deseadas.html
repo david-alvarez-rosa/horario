@@ -15,17 +15,17 @@
   <body bgcolor = #F3CA24>
 
     <!-- <link rel="stylesheet" type="text/css" href="../static/DPS.css"> -->
-    <p class ="observations2"> Porfavor, introduce las asignaturas que estés matriculado.</p>
+    <p class ="observations2"> Por favor, introduce las asignaturas que estés matriculado.</p>
 
     <form action="/cursadas" method="post">
       <p class="observations">Escoge el rendimiento que desees.</p>
       <div class="wrapper">
-		<select name="rend">
-			<option value="min" >Mínimo </option>
-			<option value="med">Medio</option>
-			<option value="max" >Máximo</option>
-			<option value="man" >Manual</option>
-		</select>
+	<select name="rend">
+	  <option value="min" >Mínimo </option>
+	  <option value="med">Medio</option>
+	  <option value="max" >Máximo</option>
+	  <option value="man" >Manual</option>
+	</select>
       </div>
 
       
@@ -273,12 +273,12 @@
 	  <br><br><br><br>
       	</div>
       </div>
-      
+
+      <br>
       <div class="wrapper">
-		  	<button onclick="javascript:history.go(-1)";>Go Back</button>
-		  	<button type="submit"> SIGUIENTE PÁGINA </button>
-		</div>
-		<br>
+	<button type="submit"> SIGUIENTE PÁGINA </button>
+      </div>
+      <br>
 
       <?php
 	if(!empty($_POST['check_list'])) {
@@ -290,9 +290,9 @@
 	}
 	>
 
-
     </form>
 
+    <button onclick="javascript:history.go(-1)";>Go Back</button>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

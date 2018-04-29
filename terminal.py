@@ -47,7 +47,8 @@ def read(name):
         codas_obt = cd.encoder(nombres_curs)
 
     # Guardar rendimiento.
-    rend = int(lines[26 + 2*l_curs_int])
+    rend = lines[26 + 2*l_curs_int]
+    rend = rend[0:len(rend) - 1]
 
     # Guardar en vector asignaturas para hacer horario con nota deseada.
     l_des = int(lines[29 + 2*l_curs_int])

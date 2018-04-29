@@ -87,18 +87,26 @@ def resultados():
         horario[ia][ja] = -1
             
     # Ejecutar el programa.
-    horario, hora_ini, nombres_hor, vecinos, notas_esp, \
-        nombres_des = main.main(notas_curs_todas, rend, nombres_des, \
+    horario, hora_ini, nombres_hor, vecinos_curs, vecinos_des, notas_esp, \
+        nombres_des, finde = main.main(notas_curs_todas, rend, nombres_des, \
                                 notas_des, horario)
     
     dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']
-    l_vecinos_i = len(vecinos)
-    l_vecinos_j = len(vecinos[0])
+    l_vecinos_curs_i = len(vecinos_curs)
+    l_vecinos_curs_j = len(vecinos_curs[0])
+    l_vecinos_des_i = len(vecinos_des)
+    l_vecinos_des_j = len(vecinos_des[0])
     l_des = len(notas_des)
     
     return render_template('resultados.html', horario = horario, dias = dias, \
                            l_horario = len(horario), nombres = nombres_hor, \
                            ini = hora_ini, title = 'resultados', \
-                           vecinos = vecinos, l_vecinos_i = l_vecinos_i, \
-                           l_vecinos_j = l_vecinos_j, notas_esp = notas_esp, \
-                           nombres_des = nombres_des, l_des = l_des)
+                           vecinos_curs = vecinos_curs, \
+                           l_vecinos_curs_i = l_vecinos_curs_i, \
+                           l_vecinos_curs_j = l_vecinos_curs_j, \
+                           vecinos_des = vecinos_des, \
+                           l_vecinos_des_i = l_vecinos_des_i, \
+                           l_vecinos_des_j = l_vecinos_des_j, \
+                           notas_esp = notas_esp, \
+                           nombres_des = nombres_des, l_des = l_des, \
+                           finde = finde, l_finde = len(finde))
