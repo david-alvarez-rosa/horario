@@ -65,6 +65,18 @@ p {
     padding: 10px;
     height: 350px; /* Should be removed. Only for demonstration */
 }
+.column_medium {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 600px; 
+}
+.column_long {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 1170px; 
+}
 .row:after {
     content: "";
     display: table;

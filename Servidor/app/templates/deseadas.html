@@ -20,13 +20,14 @@
     <form action="/cursadas" method="post">
       <p class="observations">Escoge el rendimiento que desees.</p>
       <div class="wrapper">
-	<select name="rend">
-  	  <option value="min" >Mínimo </option>
-  	  <option value="med">Medio</option>
-  	  <option value="max" >Máximo</option>
-	  <option value="man" >Manual</option>
-	</select>
+		<select name="rend">
+			<option value="min" >Mínimo </option>
+			<option value="med">Medio</option>
+			<option value="max" >Máximo</option>
+			<option value="man" >Manual</option>
+		</select>
       </div>
+
       
       <div class="row">
       	<div class="column_short" align="center">
@@ -194,7 +195,7 @@
           <input type="checkbox" name="check_list[]" value="Control Automático">Control Automático
         </div> 
       	
-      	<div class="column" align="center">
+      	<div class="column_long" align="center">
       	  <p class=observations2>Q8</p>
 	  <input type="checkbox" name="check_list[]" value="Tecnologías Digitales para la Comunicación de los Proyectos">Tecnologías Digitales para la Comunicación de los Proyectos
 	  <br>
@@ -272,6 +273,12 @@
 	  <br><br><br><br>
       	</div>
       </div>
+      
+      <div class="wrapper">
+		  	<button onclick="javascript:history.go(-1)";>Go Back</button>
+		  	<button type="submit"> SIGUIENTE PÁGINA </button>
+		</div>
+		<br>
 
       <?php
 	if(!empty($_POST['check_list'])) {
@@ -283,8 +290,7 @@
 	}
 	>
 
-      <button onclick="javascript:history.go(-1)";>Go Back</button>
-      <button type="submit"> SIGUIENTE PÁGINA </button>
+
     </form>
 
 
