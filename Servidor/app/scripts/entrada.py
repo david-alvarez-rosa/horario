@@ -62,8 +62,8 @@ def convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario):
     # Guardar las notas deseadas negativas (para identificarlas después).
     for i in range(0, len(notas_des)):
         notas_des[i] *= -1
-        # Para no tener problemas con el 0 lo guardo como -11.
-        if notas_des[i] == 0: notas_des[i] = -11 
+        # Para no tener problemas con el 0 lo guardo como -1111.
+        if notas_des[i] == 0: notas_des[i] = -1111 
         notas = notas_curs + notas_des
         nombres = nombres_curs + nombres_des
     if len(codas) > 0:
@@ -94,8 +94,8 @@ def leer_cursadas():
     termo = request.form['input_termo']
 
     # Convertir notas a lista.
-    notas_curs_todas = [sele, algebra, calcul1, info1, mec_fon, quim1, calc2, expre,
-                        geo, quim2, termo]
+    notas_curs_todas = [sele, algebra, calcul1, info1, mec_fon, quim1, calc2, \
+                        expre, geo, quim2, termo]
     for i in range(0, len(notas_curs_todas)):
         if notas_curs_todas[i] == '':
             notas_curs_todas[i] = -1

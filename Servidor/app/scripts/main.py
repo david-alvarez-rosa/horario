@@ -46,7 +46,10 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     finde_des, nombres_hor, horario_des, \
         horario, ini = gn.generator_main(horas, nombres_des, horario)
     hora_ini += ini
-
+    # Si el horario está vacío, poner hora de inicio a las 9.
+    if hora_ini == 23:
+        hora_ini = 9
+    
     # Imprimir resultados por terminal.
     ter.print_results(nombres_des, notas_des, l_des, notas_esp, nombres, \
                nearest_form, notas, diff, horas, horario_des, finde_des, \
@@ -61,4 +64,4 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
 
     # Retornar todo lo necesario para generar el output.
     return horario, hora_ini, nombres_hor, vecinos_curs, vecinos_des, \
-        notas_esp, nombres_des, finde
+        notas_esp, nombres_des, finde, notas_des, notas_med, horas, creds

@@ -43,6 +43,8 @@ def update_finde(hours):
         hours[i] -= 2
         finde[i] += 2
         i -= 1
+        # Si me he salido de la lista, vuelvo a comenzar.
+        if i < 0: i = n - 1
         
     return finde
         

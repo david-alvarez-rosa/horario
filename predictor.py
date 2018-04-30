@@ -43,7 +43,11 @@ def create_matrix(df, codas, sele):
 def predict_grades(nearest, codas, notas, matrix, k, diff, sele):
     # Posible error por falta de alumnos 'compatibles'.
     if len(nearest) < k: k = len(nearest)
-    grades = [0]*len(codas)
+    # Corrección de error si no hay ningún alumno 'compatible'.
+    if k == 0: return 0
+
+    # Predicción de notas.
+    grades = [0]*len(codas)    
     for j in range(0, len(codas)):
         # Si es una asignatura no cursada, calculo la media.
         if notas[j] < 0:

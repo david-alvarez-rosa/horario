@@ -97,14 +97,21 @@ def print_results(nombres_des, notas_des, l_des, notas_esp, nombres, \
                sele, notas_med, creds, rend):
     # Imprimir por pantalla los vecinos más cercanos.
     print('\n', '\t'*7, 'VECINOS MÁS CERCANOS', '\n'*2)
+    # Quitar las notas deseadas de la tabla.
+    notas_sin = []
+    for i in range(0, len(notas)):
+        if notas[i] < 0:
+            notas_sin.append('')
+        else:
+            notas_sin.append(notas[i])
     if sele < 0:
         nearest_form = [['CODEX'] + nombres + ['DISTANCIA'], \
-                        ['']*(len(nombres) + 2)] + [['TÚ'] + notas + \
+                        ['']*(len(nombres) + 2)] + [['TÚ'] + notas_sin + \
                         ['diff = ' + str(round(diff, 2))]] \
                        + [['']*(len(nombres) + 2)] + nearest_form
     else:
         nearest_form = [['CODEX'] + nombres + ['SELE'] + ['DISTANCIA'], \
-                        ['']*(len(nombres) + 3)] + [['TÚ'] + notas + [sele] + \
+                        ['']*(len(nombres) + 3)] + [['TÚ'] + notas_sin + [sele] + \
                         ['diff = ' + str(round(diff, 2))]] \
                        + [['']*(len(nombres) + 3)] + nearest_form
     # Acortar nombres para que entren en pantalla.

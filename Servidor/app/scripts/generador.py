@@ -22,7 +22,7 @@ def format_horario(horario_inp):
 
     # Crear vector formateado.
     horario = []
-    for i in range(ini, fin):
+    for i in range(ini, fin + 1):
         horario.append(horario_inp[i])
 
     return horario, ini
@@ -73,6 +73,8 @@ def update_finde(hours):
         hours[i] -= 2
         finde[i] += 2
         i -= 1
+        # Si me he salido de la lista, vuelvo a comenzar.
+        if i < 0: i = n - 1
         
     return finde
         
