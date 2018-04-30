@@ -11,7 +11,7 @@
   </head>
 
   <!-- HEADER -->
-  <body bgcolor = #F3CA24>
+  <body bgcolor="#F3CA24">
     
     <!-- APARTADO HORARIO -->
     <link rel="stylesheet" type="text/css" href="../static/css/DPS.css">
@@ -21,7 +21,6 @@
 	<div class="column_medium" style="background-color:#F3CA24;">
 	  <table align="center">
 	    <p class="observations2">Introduce el máximo número de notas posibles.</p>
-	    <br>
 	    <tr><td>Nota de Selectividad:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_sele"></td></tr>
 	    <tr><td>Álgebra Lineal:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_algebra"></td></tr>
 	    <tr><td>Cálculo I:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="input_calcul1"></td></tr>
@@ -39,7 +38,6 @@
 	<div class="column_medium" style="background-color:#F3CA24;">
 	  <table align="center">
 	    <p class="observations2"> Introduce las notas que deseas obtener.</p>
-	    <br>
 	    {% for i in range(0, l_des) %}
 	    <tr><td>{{ nombres_des[i] }}:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="{{ nombres_des[i] }}"></td></tr>	  
 	    {% endfor %}
@@ -55,6 +53,7 @@
       </div>
     </form>
 
+    <br>
     <button onclick="javascript:history.go(-1)";>Go Back</button>
     
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
