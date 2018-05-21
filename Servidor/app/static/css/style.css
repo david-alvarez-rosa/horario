@@ -273,3 +273,13 @@ table td.highlighted {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+#button1{
+    width: 300px;
+    height: 40px;
+}
+#button2{
+    width: 200px;
+    height: 40px;
+}
+

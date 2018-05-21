@@ -284,10 +284,10 @@
 
       <br><br>
       <div class="wrapper">
-      	<button type="submit"> SIGUIENTE PÁGINA </button>
+      	<button type="submit" id="button1"> SIGUIENTE PÁGINA </button>
       </div>
       <br>
-
+      
       <?php
 	if(!empty($_POST['check_list'])) {
 	foreach($_POST['check_list'] as $check) {
@@ -299,7 +299,18 @@
 	>
     </form>
 
-    <button onclick="javascript:history.go(-1)";>Go Back</button>
+    <div>
+      <div style="float: right;"> 
+	<form action="/documentacion" target="_blank">
+	  <button type="submit" id="button2">Documentación</button>	  
+	</form>
+      </div>
+      <div style="float: left;">
+	<button onclick="javascript:history.go(-1)" id="button2">Go Back</button>
+      </div>
+    </div>
+
+    <br><br>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

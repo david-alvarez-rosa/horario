@@ -10,6 +10,11 @@ def horario():
     return render_template('horario.html', title = 'Home')
 
 
+@app.route('/documentacion')
+def documentacion():
+    return render_template('documentacion.html', title = 'Documentacion')
+
+
 @app.route('/deseadas', methods = ['POST'])
 def deseadas():
     # Leer horas ocupadas del horario.
@@ -21,7 +26,7 @@ def deseadas():
             horario_file.write(str(horario[i][j]))
         horario_file.write('\n')
     
-    return render_template('deseadas.html', title='deseadas')
+    return render_template('deseadas.html', title='Deseadas')
 
 
 @app.route('/cursadas', methods = ['POST'])
@@ -43,7 +48,7 @@ def cursadas():
         return render_template('cursadas_man.html', nombres_des = nombres_des,
                                l_des = len(nombres_des), title='cursadas')
 
-    return render_template('cursadas.html', title = 'cursadas')
+    return render_template('cursadas.html', title = 'Cursadas')
 
 
 @app.route('/resultados', methods = ['POST'])
@@ -112,7 +117,7 @@ def resultados():
     return render_template('resultados.html', horario = horario, dias = dias, \
                            l_horario = len(horario), nombres = nombres_hor, \
                            large_horario = large_horario, \
-                           ini = hora_ini, title = 'resultados', \
+                           ini = hora_ini, title = 'Resultados', \
                            vecinos_curs = vecinos_curs, \
                            l_vecinos_curs_i = l_vecinos_curs_i, \
                            l_vecinos_curs_j = l_vecinos_curs_j, \
