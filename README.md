@@ -2,7 +2,9 @@
 <br>
 
 **Integrantes del grupo**: Pau Albiol, David Álvarez, Guillermo Creus.
+
 **Mesa**: 4.
+
 **Fecha entrega**: 30/05/2018.
 
 <br>
@@ -64,7 +66,7 @@ Obtenidas las horas de estudio para cada asignatura, estas se deben distribuir e
 El funcionamiento general del código, desde que el usuario introduce el input hasta que el output se genera en pantalla está resumido en el siguiente diagrama.
 <br>
 
-![Diagrama funcionamiento programa](Imágenes/diagram.jpg)
+![Diagrama funcionamiento programa](Imágenes/diagrama.jpg)
 
 #### Main
 

@@ -13,7 +13,7 @@ text=${text//
 result=$(curl --silent https://api.github.com/markdown -d "{\"text\": \"$text\", \"mode\": \"gfm\", \"context\": \"\"}")
 
 # Cambiar la dirección para la imagen (el diagrama de funcionamiento).
-result=${result//Im%C3%A1genes\/diagram.jpg/..\/static\/images\/diagram.jpg}
+result=${result//Im%C3%A1genes\/diagrama.jpg/..\/static\/images\/diagram.jpg}
 
 # Output html
 printf '<!DOCTYPE HTML>
