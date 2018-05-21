@@ -11,6 +11,7 @@
   </head>
 
 
+  
   <!-- HEADER OK-->
   <body bgcolor="#F3CA24">
 
@@ -20,7 +21,8 @@
     <form action="/cursadas" method="post">
       <p class="observations">Escoge el rendimiento que desees.*</p>
       <div class="wrapper">
-	<select name="rend">
+	<select name="rend" required>
+	  <option value="">Rendimiento</option>
 	  <option value="min">Mínimo </option>
 	  <option value="med">Medio</option>
 	  <option value="max">Alto</option>
@@ -311,6 +313,13 @@
     </div>
 
     <br><br>
+
+    {% if vacio == True %}
+    <script>
+      alert("Por favor, introduzca al menos una asignatura.");
+    </script>
+    {% endif %}
+
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

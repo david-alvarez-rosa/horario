@@ -16,7 +16,7 @@
     <!-- APARTADO HORARIO -->
     <link rel="stylesheet" type="text/css" href="../static/css/DPS.css">
 
-    <form action="/resultados" method="post">
+    <form action="/resultados" method="post" onsubmit="non_empty_man()" name="notas_des">
       <div class="row">
 	<div class="column_medium" style="background-color:#F3CA24;">
 	  <table align="center">
@@ -39,7 +39,7 @@
 	  <table align="center">
 	    <p class="observations2"> Introduce las notas que deseas obtener.</p>
 	    {% for i in range(0, l_des) %}
-	    <tr><td>{{ nombres_des[i] }}:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="{{ nombres_des[i] }}"></td></tr>	  
+	    <tr><td>{{ nombres_des[i] }}:</td><td> <input width="70%" size="10" onkeypress="return justNumbers(event);" name="{{ nombres_des[i] }}" required></td></tr>	  
 	    {% endfor %}
 	  </table>
 	  <br>
@@ -67,7 +67,18 @@
     </div>
 
     <br><br>
+
     
+    {% if error == True %}
+    <script>
+      alert("\t\t\t\t\t\t\t\t\t Ha habido un error.\n \
+Compruebe que no ha introducido notas para la misma asignatura en ambas \
+columnas (cursadas y deseadas).\n \t\t\t\t\t El error puede \
+ser debido a falta de alumnos compatibles.");
+    </script>
+    {% endif %}
+
+        
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../static/javascript/jquery.min.js"></script>

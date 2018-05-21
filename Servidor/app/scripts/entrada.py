@@ -35,10 +35,13 @@ def format_horario(horario_inp):
 # Convertir input de la web en input válido para el programa.
 def convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario):
     # Variables puestas como 'default'.
-    nombres_curs_todas = ['Álgebra Lineal', 'Cálculo I', 'Mecánica Fundamental', 
-                          'Química I', 'Fundamentos de Informática', 'Cálculo II',
-                          'Geometría','Termodinámica Fundamental', 'Química II',
-                          'Expresión Gráfica']
+    nombres_curs_todas = ['Álgebra Lineal', 'Cálculo I',
+                          'Fundamentos de Informática',
+                          'Mecánica Fundamental', 
+                          'Química I', 'Cálculo II',
+                          'Expresión Gráfica', 'Geometría', 'Química II',
+                          'Termodinámica Fundamental'
+                          ]
     k = 12
 
     # Notas introducidas por el usuario.

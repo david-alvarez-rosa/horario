@@ -13,14 +13,19 @@ def main(notas_curs_todas, rend, nombres_des, notas_des, horario):
     sele, l_curs, l_des, nombres_des, notas_des, codas, nombres, notas, k, \
         horario, rend, notas_curs, l_horario, hora_ini = \
         ent.convert_input(notas_curs_todas, nombres_des, rend, notas_des, horario)
-    
+
     # Predecir notas.
     grades, nearest_form, diff = pr.predictor_main(codas, notas, k, l_curs, sele)
 
     # Posible error si no hay ningún alumno 'commpatible' con usuario.
+    # También puede deberse a que el usuario ha introducido una nota como
+    # deseada y como cursada.
     if len(nearest_form) == 0:
-        print('\n Ningún alumno compatible! \n')
-        return
+        print('\n'*2 + '\t'*4 + 'Ha habido un error.\n' + 
+              'Compruebe que no ha introducido notas para la misma asignatura' +
+              ' en ambas columnas (cursadas y deseadas).\n \t\t' +
+              'El error puede ser debido a falta de alumnos compatibles.' + '\n'*2)
+        return [-1]*12
 
     # Reordenar las notas esperadas como las introdujo el usuario y redondear
     # a dos decimales.

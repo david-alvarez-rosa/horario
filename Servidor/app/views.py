@@ -26,7 +26,8 @@ def deseadas():
             horario_file.write(str(horario[i][j]))
         horario_file.write('\n')
     
-    return render_template('deseadas.html', title='Deseadas')
+    return render_template('deseadas.html', vacio = False,
+                           title='Deseadas')
 
 
 @app.route('/cursadas', methods = ['POST'])
@@ -39,16 +40,22 @@ def cursadas():
     
     # Leer nombres de las asignaturas deseadas para hacer horario.
     nombres_des = request.form.getlist('check_list[]')
+    # Comprobar que el usuario ha introducido al menos una asignatura.
+    if len(nombres_des) == 0:
+        return render_template('deseadas.html', vacio = True, \
+                               title='Deseadas')
     # Guardarlos en un fichero por filas.
     nombres_des_file = open('app/tmp/nombres_des_file.txt', 'w')
     for i in range(0, len(nombres_des)):
         nombres_des_file.write(nombres_des[i] + '\n')
 
     if rend == 'man':
-        return render_template('cursadas_man.html', nombres_des = nombres_des,
-                               l_des = len(nombres_des), title='cursadas')
+        return render_template('cursadas_man.html', nombres_des = nombres_des, \
+                               l_des = len(nombres_des), error = False, \
+                               title = 'Cursadas')
 
-    return render_template('cursadas.html', title = 'Cursadas')
+    return render_template('cursadas.html', vacio = False, \
+                           title = 'Cursadas')
 
 
 @app.route('/resultados', methods = ['POST'])
@@ -61,9 +68,16 @@ def resultados():
     rend = rend_file.readlines()
     rend = str(rend[0])
 
+    # Si el rendimiento no es manual, comprobar que el formulario no
+    # se ha dejado vacío.
+    if rend !=  'man' and notas_curs_todas == [-1]*11:
+        return render_template('cursadas.html', vacio = True, \
+                               title = 'Cursadas')
+
     # Leer nombres asignaturas deseadas desde fichero.
     nombres_des_file = open('app/tmp/nombres_des_file.txt', 'r')
     lines = nombres_des_file.readlines()
+
     # Guardar nombres en lista.
     nombres_des = []
     for i in range(0, len(lines)):
@@ -90,12 +104,27 @@ def resultados():
         ia = int(lines[k][1:3]) - 9
         ja = int(lines[k][0]) - 1
         horario[ia][ja] = -1
-            
+
     # Ejecutar el programa.
     horario, hora_ini, nombres_hor, vecinos_curs, vecinos_des, notas_esp, \
         nombres_des, finde, notas_des, \
         notas_med, horas, creds = main.main(notas_curs_todas, rend, nombres_des, \
                               notas_des, horario)
+
+    # Si ha habido algún error, volver a la página anterior y avisar de error.
+    if horario == -1:
+        # Volver a leer nombres deseados del fichero.
+        nombres_des_file = open('app/tmp/nombres_des_file.txt', 'r')        
+        lines = nombres_des_file.readlines()
+        nombres_des = []
+        for i in range(0, len(lines)):
+            nombre = lines[i]
+            nombre = nombre[0:len(nombre) - 1]
+            nombres_des.append(nombre)
+        # Devolver la página con el mensaje de error.
+        return render_template('cursadas_man.html', nombres_des = nombres_des, \
+                               l_des = len(nombres_des), error = True, \
+                               title = 'Cursadas')
 
     # Variables necesarias para crear el output en web.
     dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']
