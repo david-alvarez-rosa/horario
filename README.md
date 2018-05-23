@@ -114,15 +114,105 @@ Con las restricciones de horario introducidas por el usuario y con las horas de 
 
 
 ## 4. Herramientas e implementación.
-Herramientas de soft usadas: Para el filtrado de datos se ha usado pandas, una librería de Python destinada al análisis de datos que proporciona unas estructuras de datos flexibles y que permiten trabajar con ellos de forma eficiente. Más concretamente se ha trabajado con DataFrame (los datos se estructuran en forma de tablas).
+### Herramientas de soft usadas
+##### Pandas
+Para el filtrado de datos se ha usado pandas, una librería de Python destinada al análisis de datos que proporciona unas estructuras de datos flexibles y que permiten trabajar con ellos de forma eficiente. Más concretamente se ha trabajado con DataFrame (los datos se estructuran en forma de tablas).
 
-El programa se ha desarrollado en Python…?
-
+##### Flask
 Para crear la aplicación web se ha usado Flask. Flask es un framework minimalista escrito en Python que permite crear aplicaciones web con un mínimo número de líneas de código (basado en el motor de templates Jinja2).
 
-La página web funciona con archivos html y javascript…  Para trabajar en equipo de  eficiente se creó un [repositorio](https://github.com/David-98/Horario) público en GitHub (https://github.com/David-98/Horario). Github es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el controlador de versiones Git.
+##### GitHub
+Para trabajar en equipo de  eficiente se creó un [repositorio](https://github.com/David-98/Horario) público en GitHub (https://github.com/David-98/Horario). Github es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el controlador de versiones Git.
 
-Descripción de la solución concreta adaptada: ............
+### Implementación
+##### 1. Implementación del filtraje:
+Se abren los tres ficheros:
+
+        dsele = pd.read_csv('sele.csv')
+        dini = pd.read_csv('ini.csv')
+        dnoini = pd.read_csv('noini.csv')
+
+En el fichero de notas de selectividad, se eliminan los datos con código de estudiante repetido (excepto la última nota):
+
+        dsele = dsele.drop_duplicates(['CODEX'],keep='last')
+        dsele = dsele.reset_index(drop=True)
+
+Se eliminan los estudiantes que no estan en la fase inicial y fase no inicial (personas que hayan abandonado la carrera), y también se eliminan las notas de asignaturas repetidas:
+
+         dini = dini[dini['CODEX'].isin(dnoini.CODEX)]
+         dini = dini.drop_duplicates(subset=['CODEX','CODASS'],keep = 'first')
+         dini = dini.reset_index(drop=True)
+         dnoini = dnoini[dnoini['CODEX'].isin(dini.CODEX)]
+         dnoini = dnoini.drop_duplicates(subset=['CODEX','CODASS'],keep = 'first')
+         dnoini = dnoini.reset_index(drop=True)
+
+Se procede a combinar los tres ficheros en uno mediante dos pasos:
+
+        dfm = pd.merge(dini, dnoini, how = 'outer')
+        dfm = pd.merge(dsele, dfm, on = 'CODEX')
+        dfm = dfm.sort_values(by = ['CODEX', 'CODASS'])
+
+Se ordena el archivo de la forma:
+
+		CODEX	SELE	CODASS	NF
+		243050	11.73	240011	6.2
+		243050	11.73	240012	7.2
+		243050	11.73	240013	6.0
+		243050	11.73	240014	3.6
+		243050	11.73	240015	8.3
+		243050	11.73	240021	8.0
+		...     ...     ...     ...
+		243124	11.29	240011	5.6
+		243124	11.29	240012	7.0
+		243124	11.29	240013	5.3
+		243124	11.29	240014	5.7
+		243124	11.29	240015	7.9
+		243124	11.29	240021	6.0
+
+
+Se guarda el archivo como data.csv:
+
+        dfm.to_csv('data.csv', encoding='UTF-8', index=False)
+
+##### 2. Implementación de la predicción:
+
+
+##### 3.Implementación de asignación de horas:
+La función "hours main" convierte las notas deseadas en horas de estudio mediante una función exponencial. La función "hours main" devuelve un vector con las horas a estudiar. Se ha supuesto que para que un estudiante llegue a la media de una asignatura, se debe estudiar, a la semana, el 80% del número de créditos de la asignatura.
+
+        def hours_main(notas_des, notas_esp, notas_med, l_des, creds):
+          ...
+          hours = []
+          for i in range(0, l_des):
+             hours.append(creds[i]*0.8)
+
+Evitando el rápido crecimiento de la exponencial, se multiplican las horas a estudiar por un factor que depende de la nota deseada:
+        
+        if -notas_des[i] - notas_esp[i] < 2:
+            hours[i] *= pow(1.12, 1.7*(-notas_des[i] - notas_esp[i]))
+        elif -notas_des[i] - notas_esp[i] < 4:
+            hours[i] *= pow(1.12, 1.1*(-notas_des[i] - notas_esp[i]))
+        elif -notas_des[i] - notas_esp[i] < 6:
+            hours[i] *= pow(1.12, 0.9*(-notas_des[i] - notas_esp[i]))
+        else:
+            hours[i] *= pow(1.12, 0.7*(-notas_des[i] - notas_esp[i]))
+
+Se aplican factores de corrección para las notas muy bajas:
+
+        if -notas_des[i] <= 1:
+            hours[i] = 0
+        elif -notas_des[i] <= 1.5:
+            hours[i] *= 0.5
+        elif -notas_des[i] <= 2:
+            hours[i] *= 0.75
+Se aplica un redondeo a las horas de estudio finales y se impone un máximo de 25 horas semanales:
+
+        hours[i] = int(round(hours[i], 0))
+        if hours[i] >= 25:
+            hours[i] = 25
+        
+  
+##### 4. Implementación de ordenación de horas:
 
 
 ## 5. Planificación y costes.
