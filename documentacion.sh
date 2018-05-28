@@ -12,8 +12,10 @@ text=${text//
 # Convert markdown to html using Github API v3
 result=$(curl --silent https://api.github.com/markdown -d "{\"text\": \"$text\", \"mode\": \"gfm\", \"context\": \"\"}")
 
-# Cambiar la dirección para la imagen (el diagrama de funcionamiento).
+# Cambiar la dirección para las imágenes.
 result=${result//Im%C3%A1genes\/diagrama.jpg/..\/static\/images\/diagram.jpg}
+result=${result//Im%C3%A1genes\/funcionamiento.png/..\/static\/images\/funcionamiento.png}
+result=${result//Im%C3%A1genes\/onmouseover.png/..\/static\/images\/onmouseover.png}
 
 # Output html
 printf '<!DOCTYPE HTML>

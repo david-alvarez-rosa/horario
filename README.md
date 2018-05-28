@@ -24,6 +24,8 @@ Creación de un horario de estudio que se adapte a los objetivos académicos del
 
 ## 2. Alcance.
 ### Funcionalidades
+![Diagrama uncionamiento Web](Imágenes/funcionamiento.png)
+
 **Smart_Hours** genera un horario y ofrece cuatro tablas y un gráfico que contienen datos de interés enfocados al cliente. Las horas del horario están distribuidas de manera adecuada para que cliente pueda cumplir con sus objetivos académicos. Para crear el horario, el cliente debe interactuar con la web rellenando tres formularios.
 1. El primer formulario, consiste en indicar qué horas de la semana (de lunes a viernes, de 9:00 h a 23:00 h) tiene ocupadas el cliente para que no se asignen horas de estudio en dichas horas no disponibles.
 2. En el segundo, éste debe elegir su rendimiento e introducir las asignaturas que quiere en su horario. El parámetro del rendimiento indica “el objetivo”. Hay cuatro opciones a elegir:
@@ -55,7 +57,13 @@ Se ha partido de tres bases de datos que contenían resultados académicos de es
 Dado que un factor para calcular las horas de estudio es la nota predicha del cliente, obviamente se necesitan realizar predicciones (de una variable numérica continua). Para ello se ha utilizado el método de K-Vecinos más cercanos.
 ##### 3. Problema de asignación de horas: 
 Una vez predichas las notas, se deben comparar con los objetivos del cliente y traducir a “horas de estudio”.
-##### 4. Problema de ordenación de horas:
+##### 4. Problema de selección de *checkboxes*:
+Al crear la web, uno de los problemas más graves que tuvimos fue la rapidez de la entrada de datos por parte del usuario. Queríamos una web que no fuese complicada de usar y a la vez que no pareciese saturada. Uno de estos problemas fue la selección de las horas ocupadas. Inicialmente, dado un horario semanal, el usuario tenía que ir dando click hora por hora, pero nosotros queríamos una manera más rápida.
+
+Para solucionar este problema, buscamos dos opciones. Crear una función Javascript, que nos permitiese hacer un barrido rápido, o adaptar el checkbox que teníamos, para que pudiese hacer lo mencionado anteriormente. Finalmente, por facilidad de uso, nos decantamos por la segunda solución. La siguiente imagen muestra la solución al problema, usando la función “onmouseover”, que te deja hacer una selección múltiple sin despegar el dedo del botón izquierdo.
+
+![Función 'onmouseover'](Imágenes/onmouseover.png)
+##### 5. Problema de ordenación de horas:
 Obtenidas las horas de estudio para cada asignatura, estas se deben distribuir en un horario de forma ordenada y lógica (evitar problemas del tipo: en un día hay que estudiar 4 horas seguidas de la misma asignatura).
 
 ### Solución propuesta (Planteamiento global de funcionamiento)
