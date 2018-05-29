@@ -303,7 +303,7 @@ Para realizar el proyecto de **Smart_Hours**, una de las primeras cosas que se c
 
 Es decir, en total unas 180 horas.
 
-El único coste del proyecto ha sido el consumo energético para alimentar los ordenadores.  Suponiendo que un ordenador usa 100W por 1 hora diaria a 0,12 € el kWh, calculando para un integrante el coste mensual es de 0,43 € al mes. Dado que el proyecto ha durado 2 meses y **Smart_Hours** ha sido desarrollado por 3 integrantes, el coste energético estimado es de 2,6 €.
+El único coste del proyecto ha sido el consumo energético para alimentar los ordenadores.  Suponiendo que un ordenador usa 100W por 1 hora diaria a 0,14 € el kWh, calculando para un integrante el coste mensual es de 0,43 € al mes. Dado que el proyecto ha durado 2 meses y **Smart_Hours** ha sido desarrollado por 3 integrantes, el coste energético estimado es de 2,6 €.
 
 
 ## 6. Resultados y conclusiones.
