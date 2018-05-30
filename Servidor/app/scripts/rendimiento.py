@@ -37,5 +37,5 @@ def rend_main(rend, l_des, notas_des, notas_curs, l_curs):
         elif media*1.1 >= 5:
             notas_des = [-10]*l_des
         else:
-            notas_des = [5*1.1]*l_des
+            notas_des = [-5*1.1]*l_des
         return notas_des
