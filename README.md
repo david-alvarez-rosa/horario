@@ -1,7 +1,7 @@
 # Documentación
 <br>
 
-**Web del proyecto**: [web](http://alvarezrosa.com:5000)
+**Web del proyecto**: [enlace](http://alvarezrosa.com:5000).
 
 **Integrantes del grupo**: Pau Albiol, David Álvarez, Guillermo Creus.
 
